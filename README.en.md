@@ -18,6 +18,13 @@ Works with Claude, ChatGPT, Gemini, Codex, GitHub Copilot, Cursor and any tool t
 
 Install once and the agent picks the right skill for each request.
 
+## If you don't read Thai
+
+- **Ask in English.** The Thai output stays Thai, and everything that explains it (translation notes, change summaries, questions) comes back in English. Thai words quoted in the notes get their meaning in brackets.
+- **Back-translations.** For short jobs, up to about 30 lines, subtitle blocks or strings, the agent adds a table that says in plain English what the Thai actually says, so you can check the meaning. For longer files, ask for one. Back-translations never go into the translated file.
+- **Example:** [game menu strings for a developer who doesn't read Thai](examples/localize-th/04-english-speaker.md).
+- **Still get a native review.** Have a Thai speaker read anything you publish.
+
 ## localize-th: subtitles, games, apps and websites
 
 | Source | Typical machine translation | localize-th |
@@ -37,7 +44,7 @@ Install once and the agent picks the right skill for each request.
 python3 skills/localize-th/scripts/check_translation.py en.srt th.srt
 ```
 
-Examples: [SRT subtitles](examples/localize-th/01-subtitle-srt.md), [app JSON](examples/localize-th/02-app-ui-json.md), [game CSV](examples/localize-th/03-game-dialogue-csv.md).
+Examples: [SRT subtitles](examples/localize-th/01-subtitle-srt.md), [app JSON](examples/localize-th/02-app-ui-json.md), [game CSV](examples/localize-th/03-game-dialogue-csv.md), [for a developer who doesn't read Thai](examples/localize-th/04-english-speaker.md).
 
 ## script-th: AI short dramas and Thai voice-over
 
@@ -115,12 +122,12 @@ Download the zip for each skill you want from [Releases](https://github.com/inat
 
 Download the bundled prompt for each skill from [Releases](https://github.com/inatbalthazar/humanizer-th/releases) (`localize-th-prompt.md`, `script-th-prompt.md`, `humanizer-th-prompt.md`):
 
-- **ChatGPT:** one GPT per skill. Upload the file under Knowledge and set Instructions to "ทำตามคำสั่งในไฟล์ [file name] ทุกข้อ" (Instructions is capped at 8,000 characters, too short for the whole file).
+- **ChatGPT:** one GPT per skill. Upload the file under Knowledge and set Instructions to "Follow every instruction in [file name]." (Instructions is capped at 8,000 characters, too short for the whole file).
 - **Gemini:** create a Gem and paste the whole file into its instructions, or attach it.
 - **API:** use the whole file as the system prompt.
 - **Any chat:** attach the file and ask the model to follow it.
 
-The bundles are 58,000 to 92,000 characters. Thai uses more tokens than English, so sending one on every API call adds up.
+The bundles are 59,000 to 94,000 characters. Thai uses more tokens than English, so sending one on every API call adds up.
 
 ### Manual install
 

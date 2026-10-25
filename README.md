@@ -18,6 +18,8 @@
 
 ติดตั้งครั้งเดียวได้ทั้งสามตัว AI จะเลือกใช้ตัวที่ตรงกับคำสั่งเอง
 
+**ผู้ใช้ที่อ่านไทยไม่ออก** สั่งเป็นภาษาอังกฤษได้ งานที่ได้ยังเป็นภาษาไทย แต่บันทึกและคำอธิบายจะเป็นภาษาอังกฤษ งานสั้นจะมีคำแปลกลับเป็นภาษาอังกฤษให้ตรวจความหมายด้วย เหมาะกับบริษัทเกมและแอปต่างชาติที่จะออกเวอร์ชันไทย ดู[ตัวอย่าง](examples/localize-th/04-english-speaker.md) และ [README ภาษาอังกฤษ](README.en.md)
+
 ## แปลซับ เกม แอป และเว็บไซต์ (localize-th)
 
 งานแปลส่วนใหญ่ที่ได้จาก AI ถูกทุกคำแต่คนไทยอ่านแล้วรู้ทันทีว่าแปลมา และบางครั้งทำไฟล์พังด้วย เช่น เวลาในซับเลื่อน หรือตัวแปรในแอปหาย
@@ -46,7 +48,7 @@
 python3 skills/localize-th/scripts/check_translation.py en.srt th.srt
 ```
 
-ตัวอย่างเต็ม: [ซับ SRT](examples/localize-th/01-subtitle-srt.md) / [แอป JSON](examples/localize-th/02-app-ui-json.md) / [เกม CSV](examples/localize-th/03-game-dialogue-csv.md)
+ตัวอย่างเต็ม: [ซับ SRT](examples/localize-th/01-subtitle-srt.md) / [แอป JSON](examples/localize-th/02-app-ui-json.md) / [เกม CSV](examples/localize-th/03-game-dialogue-csv.md) / [เมนูเกมสำหรับคนที่อ่านไทยไม่ออก](examples/localize-th/04-english-speaker.md)
 
 ## บทละครสั้น AI และบทพากย์ (script-th)
 
@@ -176,7 +178,7 @@ curl -fsSL https://raw.githubusercontent.com/inatbalthazar/humanizer-th/main/ins
 - **เรียกผ่าน API:** ใช้เนื้อหาทั้งไฟล์เป็น system prompt
 - **แชตทั่วไป:** แนบไฟล์ แล้วพิมพ์ว่าให้ทำตามไฟล์นี้
 
-ไฟล์รวมยาว 58,000–92,000 ตัวอักษร ถ้าเรียกผ่าน API ทุกครั้งจะเสียค่า token พอสมควร เพราะภาษาไทยกิน token มากกว่าภาษาอังกฤษ
+ไฟล์รวมยาว 59,000–94,000 ตัวอักษร ถ้าเรียกผ่าน API ทุกครั้งจะเสียค่า token พอสมควร เพราะภาษาไทยกิน token มากกว่าภาษาอังกฤษ
 
 ### ติดตั้งเอง
 

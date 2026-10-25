@@ -1,6 +1,6 @@
 ---
 name: humanizer-th
-description: Rewrites and edits Thai-language text so it reads as if a native Thai writer wrote it, removing AI-writing tells and English-translation patterns (เช่น "ในยุคดิจิทัลปัจจุบัน", "ได้ทำการ", "ถูกพัฒนาโดย", คำเชื่อมทุกประโยค) while keeping meaning, facts, numbers, names and the author's voice. Four modes - ตรวจ (detect), เขียนใหม่ (rewrite, default), แก้เฉพาะจุด (edit) and เลียนสไตล์ (match the user's own writing samples) - across the four Thai registers taught in school - กันเอง, ไม่เป็นทางการ, กึ่งทางการ, ทางการ. Use when the user asks to ทำให้เป็นธรรมชาติ, ดูเป็น AI ไหม, ตรวจว่าตรงไหนดูเป็น AI, แก้ภาษาให้ลื่น, เกลาภาษา, ทำให้อ่านเหมือนคนเขียน, เขียนให้เหมือนที่เราเขียน, เลียนสไตล์จากตัวอย่าง, humanize Thai text, write in my style, or make Thai posts, emails, LINE messages, product descriptions, articles or reports sound natural. Thai text only. Not for other languages, not for English-to-Thai translation, not for impersonating other people, and not for evading AI detectors.
+description: Rewrites and edits Thai-language text so it reads as if a native Thai writer wrote it, removing AI-writing tells and English-translation patterns (เช่น "ในยุคดิจิทัลปัจจุบัน", "ได้ทำการ", "ถูกพัฒนาโดย", คำเชื่อมทุกประโยค) while keeping meaning, facts, numbers, names and the author's voice. Four modes - ตรวจ (detect), เขียนใหม่ (rewrite, default), แก้เฉพาะจุด (edit) and เลียนสไตล์ (match the user's own writing samples) - across the four Thai registers taught in school - กันเอง, ไม่เป็นทางการ, กึ่งทางการ, ทางการ. Use when the user asks to ทำให้เป็นธรรมชาติ, ดูเป็น AI ไหม, ตรวจว่าตรงไหนดูเป็น AI, แก้ภาษาให้ลื่น, เกลาภาษา, ทำให้อ่านเหมือนคนเขียน, เขียนให้เหมือนที่เราเขียน, เลียนสไตล์จากตัวอย่าง, humanize Thai text, make my Thai sound natural, write in my style, or make Thai posts, emails, LINE messages, product descriptions, articles or reports sound natural. Thai text only. Not for other languages, not for English-to-Thai translation, not for impersonating other people, and not for evading AI detectors.
 license: MIT
 ---
 
@@ -137,7 +137,14 @@ license: MIT
 
 ## รูปแบบคำตอบ
 
-ใช้ภาษาไทยในผลลัพธ์ทุกโหมด ใช้รหัสรูปแบบ (THxx) ทุกครั้งที่อ้างถึงสิ่งที่เปลี่ยนหรือสิ่งที่เจอ
+ใช้รหัสรูปแบบ (THxx) ทุกครั้งที่อ้างถึงสิ่งที่เปลี่ยนหรือสิ่งที่เจอ
+
+### ภาษาของคำตอบ
+
+- **ข้อความที่เกลาหรือเขียนเป็นภาษาไทยเสมอ**
+- **ส่วนที่อธิบายให้ผู้ใช้อ่าน ใช้ภาษาเดียวกับคำขอ:** ระดับภาษา สรุปสิ่งที่เปลี่ยน รายการที่ตรวจเจอ โปรไฟล์สำนวน หมายเหตุ คำถาม และหัวข้อในแบบคำตอบด้านล่าง ถ้าผู้ใช้สั่งเป็นภาษาอังกฤษ ให้เขียนส่วนนี้เป็นภาษาอังกฤษทั้งหมด เช่น `สิ่งที่เปลี่ยน:` เป็น `Changes:` ถ้าสั่งเป็นภาษาไทยหรือไทยปนอังกฤษ ใช้ภาษาไทย
+- **คำไทยที่ยกมาอ้างในคำอธิบาย** คงเป็นภาษาไทย แล้วบอกความหมายในวงเล็บ เช่น "ได้ทำการ" (stiff "carried out the act of") รหัส THxx คงไว้เหมือนเดิม
+- **คำแปลกลับ:** ถ้าผู้ใช้สั่งเป็นภาษาอื่นที่ไม่ใช่ไทย หรือบอกว่าอ่านไทยไม่ออก ให้แนบคำแปลกลับเป็นภาษาของผู้ใช้ไว้ท้ายคำตอบทุกครั้ง ใต้หัวข้อ `Back-translation:` เขียนคำแปลกลับตามความหมายจริงของภาษาไทย ไม่ต้องเกลาให้สวย เพราะมีไว้ให้ผู้ใช้ตรวจว่าความหมายยังตรง และบอกสิ่งที่ภาษาไทยใส่เพิ่มไว้ในวงเล็บ เช่น `(polite, female speaker)` `(calls him "older brother")`
 
 ### `เขียนใหม่`
 
@@ -226,6 +233,7 @@ license: MIT
 - **คำลงท้ายปนสองเพศ:** อาจเป็นแชตหลายคน หรือแอดมินหลายคน ถ้าไม่แน่ใจให้คงไว้และถาม
 - **ผู้ใช้ส่งงานเก่าของตัวเองมาเป็นตัวอย่างสไตล์:** ใช้โหมด `เลียนสไตล์` ข้อห้ามทุกข้อยังใช้เหมือนเดิม
 - **ข้อความมีภาษาอังกฤษปนแบบที่ผู้เขียนตั้งใจ** (เช่น แชตในบริษัทเทคโนโลยี): คงไว้ ดู TH19
+- **ผู้เขียนไม่ใช่คนไทย** (ผู้ใช้บอกเอง หรือสั่งเป็นภาษาอื่นแล้วส่งภาษาไทยที่เขียนเองมา): ข้อความมักมีไวยากรณ์ผิดหรือใช้คำผิดความหมาย ซึ่งไม่ใช่รูปแบบ TH ให้แก้ด้วย เพราะคนไทยอ่านแล้วสะดุดยิ่งกว่ารูปแบบ AI ใส่ไว้ในสรุปเป็นข้อแยก ไม่ต้องมีรหัส บอกสั้นๆ ว่าผิดตรงไหน ส่วนคำลงท้าย ถ้าไม่รู้เพศของผู้เขียน ให้ถามตามกฎเดิม
 
 ## ตัวอย่างสั้น
 

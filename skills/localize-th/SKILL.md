@@ -1,6 +1,6 @@
 ---
 name: localize-th
-description: Translates English into natural Thai for subtitles (SRT, VTT, ASS), dubbing scripts, app and website UI strings (JSON, PO, XLIFF, iOS .strings, Android XML, ARB, CSV), game text (dialogue, items, skills, quests, menus) and plain pasted text, then reviews existing Thai translations. Keeps timestamps, keys, placeholders and markup intact, follows Thai subtitle limits (35 characters per line, 2 lines, reading speed), picks pronouns and particles per character, keeps terms consistent with a glossary, and removes translationese and AI-writing tells. Modes - แปล (translate, default), ตรวจคำแปล (review) and แก้คำแปล (fix). Use when the user asks to แปลซับ, แปลซับไตเติล, แปลบทพากย์, แปลเกม, แปล UI, แปลแอป, แปลเว็บ, ทำ localization, ตรวจคำแปลไทย, or translate subtitles, game text, app strings or website copy into Thai. English source only. Not for Thai-to-English, and not for rewriting Thai that was written in Thai (use humanizer-th).
+description: Translates English into natural Thai for subtitles (SRT, VTT, ASS), dubbing scripts, app and website UI strings (JSON, PO, XLIFF, iOS .strings, Android XML, ARB, CSV), game text (dialogue, items, skills, quests, menus) and plain pasted text, then reviews existing Thai translations. Keeps timestamps, keys, placeholders and markup intact, follows Thai subtitle limits (35 characters per line, 2 lines, reading speed), picks pronouns and particles per character, keeps terms consistent with a glossary, and removes translationese and AI-writing tells. Explains in the user's language, with back-translations for non-Thai readers. Modes - แปล (translate, default), ตรวจคำแปล (review) and แก้คำแปล (fix). Use when the user asks to แปลซับ, แปลซับไตเติล, แปลบทพากย์, แปลเกม, แปล UI, แปลแอป, แปลเว็บ, ทำ localization, ตรวจคำแปลไทย, or translate subtitles, game text, app strings or website copy into Thai. English source only. Not for Thai-to-English, and not for rewriting Thai that was written in Thai (use humanizer-th).
 license: MIT
 ---
 
@@ -121,6 +121,13 @@ python3 scripts/check_translation.py ไฟล์.po
 6. ถ้ากฎสองข้อชนกัน เช่น ซับยาวเกินแต่ตัดคำไม่ได้โดยไม่เสียใจความ ให้รักษาใจความไว้ก่อน แล้วบอกในบันทึกการแปลว่าบล็อกไหนยาวเกิน
 
 ## รูปแบบคำตอบ
+
+### ภาษาของคำตอบ
+
+- **คำแปลเป็นภาษาไทยเสมอ**
+- **ส่วนที่อธิบายให้ผู้ใช้อ่าน ใช้ภาษาเดียวกับคำขอ:** บันทึกการแปล รายการที่ตรวจเจอ จุดที่แก้ คำถาม และหัวข้อในแบบคำตอบด้านล่าง ถ้าผู้ใช้สั่งเป็นภาษาอังกฤษ ให้เขียนส่วนนี้เป็นภาษาอังกฤษทั้งหมด เช่น `บันทึกการแปล:` เป็น `Translation notes:` ถ้าสั่งเป็นภาษาไทยหรือไทยปนอังกฤษ ใช้ภาษาไทย
+- **คำไทยที่ยกมาอ้างในคำอธิบาย** คงเป็นภาษาไทย แล้วบอกความหมายในวงเล็บ เช่น "นาย" (casual "you", used between friends) รหัส LTxx และ THxx คงไว้เหมือนเดิม
+- **คำแปลกลับ:** ถ้าผู้ใช้สั่งเป็นภาษาอื่นที่ไม่ใช่ไทย หรือบอกว่าอ่านไทยไม่ออก และงานมีไม่เกินราว 30 บรรทัด บล็อก หรือ key ให้แนบตารางคำแปลกลับไว้ท้ายคำตอบ ใต้หัวข้อ `Back-translation:` (คอลัมน์ บล็อกหรือ key / ไทย / คำแปลกลับ) ถ้ายาวกว่านั้น ให้บอกในบันทึกว่าทำให้ได้ ห้ามใส่คำแปลกลับลงในไฟล์คำแปลเด็ดขาด เขียนคำแปลกลับตามความหมายจริงของภาษาไทย ไม่ต้องเกลาให้สวย เพราะมีไว้ให้ผู้ใช้ตรวจว่าความหมายยังตรง และบอกสิ่งที่ภาษาไทยใส่เพิ่มไว้ในวงเล็บ เช่น `(polite, female speaker)` `(calls him "older brother")`
 
 ### `แปล`
 

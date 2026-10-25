@@ -10,7 +10,7 @@
     {
       "name": "humanizer-th",
       "source": "./",
-      "description": "Thai-language skills: translate subtitles, games, apps and websites into natural Thai, write dialogue and voice scripts for AI short dramas, and edit AI-written Thai so it reads naturally.",
+      "description": "Thai-language skills: translate subtitles, games, apps and websites into natural Thai, write dialogue and voice scripts for AI short dramas, and edit AI-written Thai so it reads naturally or in your own style. Explanations come in the language you ask in.",
       "license": "MIT",
       "keywords": [
         "thai",
