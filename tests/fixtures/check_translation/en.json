@@ -1,0 +1,8 @@
+{
+  "cart": {
+    "title": "Your cart",
+    "count": "You have {{count}} items",
+    "greeting": "Welcome back, {name}!"
+  },
+  "limit": 5
+}

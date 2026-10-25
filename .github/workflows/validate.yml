@@ -14,6 +14,8 @@ jobs:
           python-version: "3.x"
       - name: Validate skill
         run: python3 scripts/validate_skill.py
+      - name: Test check_translation.py
+        run: python3 -m unittest discover tests -v
       - name: Check plugin manifests are valid JSON
         run: |
           python3 -m json.tool .claude-plugin/plugin.json > /dev/null

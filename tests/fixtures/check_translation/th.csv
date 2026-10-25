@@ -1,0 +1,4 @@
+ID,Speaker,MaxLength,English,Thai
+Q1_001,Elara,20,"Who sent you, [PlayerName]?","ใครส่งเจ้ามา [PlayerName]"
+Q1_002,Elara,10,"Leave. Now.","ไปซะ เดี๋ยวนี้เลย ก่อนที่ข้าจะเปลี่ยนใจ"
+Q1_003,Guard,,"Halt!",
