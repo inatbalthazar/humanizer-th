@@ -1,6 +1,6 @@
 {
   "name": "humanizer-th",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Rewrite and edit Thai text so it reads naturally, removing AI-writing tells and English-translation patterns while keeping meaning, facts and voice.",
   "author": {
     "name": "inatbalthazar",
