@@ -1,29 +1,40 @@
 #!/usr/bin/env bash
-# Install humanizer-th into every AI tool found on this machine.
+# Install the Thai skills (humanizer-th, localize-th, script-th) into every
+# AI tool found on this machine.
 #
 #   curl -fsSL https://raw.githubusercontent.com/inatbalthazar/humanizer-th/main/install.sh | bash
 #
 # Options (after "bash -s --" when piping):
-#   --target DIR   install into DIR only (DIR/humanizer-th)
-#   --uninstall    remove humanizer-th from every location below
+#   --skill NAME   install or remove only this skill (repeatable)
+#   --target DIR   install into DIR only (DIR/<skill>)
+#   --uninstall    remove the skills from every location below
 #
 # Environment:
 #   HUMANIZER_TH_REF   branch or tag to install (default: main)
-#   HUMANIZER_TH_SRC   local skill folder to copy instead of downloading
+#   HUMANIZER_TH_SRC   local skills/ folder to copy instead of downloading
 set -euo pipefail
 
 repo="inatbalthazar/humanizer-th"
 ref="${HUMANIZER_TH_REF:-main}"
-name="humanizer-th"
+all_skills=(humanizer-th localize-th script-th)
+skills=()
 target=""
 uninstall=0
 
 while [ $# -gt 0 ]; do
   case "$1" in
+    --skill) skills+=("${2:?--skill needs a name}"); shift 2 ;;
     --target) target="${2:?--target needs a folder}"; shift 2 ;;
     --uninstall) uninstall=1; shift ;;
-    -h|--help) sed -n '2,13p' "$0" 2>/dev/null || true; exit 0 ;;
+    -h|--help) sed -n '2,15p' "$0" 2>/dev/null || true; exit 0 ;;
     *) echo "Unknown option: $1" >&2; exit 1 ;;
+  esac
+done
+[ ${#skills[@]} -eq 0 ] && skills=("${all_skills[@]}")
+for s in "${skills[@]}"; do
+  case " ${all_skills[*]} " in
+    *" $s "*) ;;
+    *) echo "Unknown skill: $s (choose from ${all_skills[*]})" >&2; exit 1 ;;
   esac
 done
 
@@ -42,10 +53,12 @@ fi
 
 if [ "$uninstall" -eq 1 ]; then
   for d in "${dests[@]}"; do
-    if [ -d "$d/$name" ]; then
-      rm -rf "${d:?}/$name"
-      echo "Removed $d/$name"
-    fi
+    for s in "${skills[@]}"; do
+      if [ -d "$d/$s" ]; then
+        rm -rf "${d:?}/$s"
+        echo "Removed $d/$s"
+      fi
+    done
   done
   exit 0
 fi
@@ -66,21 +79,27 @@ else
     exit 1
   fi
   tar -xzf "$tmp/src.tar.gz" -C "$tmp"
-  src="$(find "$tmp" -mindepth 3 -maxdepth 3 -type d -path "*/skills/$name" | head -n 1)"
+  src="$(find "$tmp" -mindepth 2 -maxdepth 2 -type d -name skills | head -n 1)"
 fi
 
-if [ ! -f "$src/SKILL.md" ]; then
-  echo "SKILL.md not found in the download" >&2
-  exit 1
-fi
+for s in "${skills[@]}"; do
+  if [ ! -f "$src/$s/SKILL.md" ]; then
+    echo "$s/SKILL.md not found in the download" >&2
+    exit 1
+  fi
+done
 
 for d in "${dests[@]}"; do
   mkdir -p "$d"
-  rm -rf "${d:?}/$name"
-  cp -R "$src" "$d/$name"
-  echo "Installed $d/$name"
+  for s in "${skills[@]}"; do
+    rm -rf "${d:?}/$s"
+    cp -R "$src/$s" "$d/$s"
+    echo "Installed $d/$s"
+  done
 done
 
 echo
-echo "เสร็จแล้ว ลองพิมพ์ \"เกลาให้หน่อย\" แล้ววางข้อความภาษาไทย"
-echo "ถ้าเครื่องมือเปิดอยู่ ให้ปิดแล้วเปิดใหม่ก่อน"
+echo "เสร็จแล้ว ถ้าเครื่องมือเปิดอยู่ ให้ปิดแล้วเปิดใหม่ก่อน แล้วลองพิมพ์"
+echo "  \"เกลาให้หน่อย\" ตามด้วยข้อความภาษาไทย"
+echo "  \"แปลซับนี้เป็นไทย\" ตามด้วยไฟล์ซับ"
+echo "  \"เขียนบทละครสั้นเรื่อง...\""

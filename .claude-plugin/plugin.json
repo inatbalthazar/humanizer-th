@@ -1,8 +1,8 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "humanizer-th",
-  "version": "0.2.2",
-  "description": "Rewrite and edit Thai text so it reads naturally, removing AI-writing tells and English-translation patterns while keeping meaning, facts and voice.",
+  "version": "0.3.0",
+  "description": "Thai-language skills: translate subtitles, games, apps and websites into natural Thai, write dialogue and voice scripts for AI short dramas, and edit AI-written Thai so it reads naturally.",
   "author": {
     "name": "inatbalthazar",
     "url": "https://github.com/inatbalthazar"
@@ -11,9 +11,13 @@
   "license": "MIT",
   "keywords": [
     "thai",
+    "translation",
+    "localization",
+    "subtitles",
+    "script",
+    "dialogue",
     "writing",
-    "humanizer",
-    "skill"
+    "humanizer"
   ],
   "skills": "./skills/",
   "homepage": "https://github.com/inatbalthazar/humanizer-th"

@@ -24,10 +24,12 @@ jobs:
       - name: Test install.sh
         run: |
           bash -n install.sh
-          HOME="$RUNNER_TEMP/home" HUMANIZER_TH_SRC=skills/humanizer-th bash install.sh
-          test -f "$RUNNER_TEMP/home/.agents/skills/humanizer-th/SKILL.md"
+          HOME="$RUNNER_TEMP/home" HUMANIZER_TH_SRC=skills bash install.sh
+          for s in humanizer-th localize-th script-th; do
+            test -f "$RUNNER_TEMP/home/.agents/skills/$s/SKILL.md"
+          done
           HOME="$RUNNER_TEMP/home" bash install.sh --uninstall
-          test ! -e "$RUNNER_TEMP/home/.agents/skills/humanizer-th"
+          test -z "$(ls -A "$RUNNER_TEMP/home/.agents/skills")"
       - name: Build zip and prompt bundle
         run: bash scripts/build.sh
       - uses: actions/upload-artifact@v4

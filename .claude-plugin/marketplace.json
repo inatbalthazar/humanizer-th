@@ -10,9 +10,18 @@
     {
       "name": "humanizer-th",
       "source": "./",
-      "description": "Rewrite and edit Thai text so it reads naturally, removing AI-writing tells and English-translation patterns while keeping meaning, facts and voice.",
+      "description": "Thai-language skills: translate subtitles, games, apps and websites into natural Thai, write dialogue and voice scripts for AI short dramas, and edit AI-written Thai so it reads naturally.",
       "license": "MIT",
-      "keywords": ["thai", "writing", "editing", "humanizer"]
+      "keywords": [
+        "thai",
+        "translation",
+        "localization",
+        "subtitles",
+        "script",
+        "dialogue",
+        "writing",
+        "humanizer"
+      ]
     }
   ]
 }
