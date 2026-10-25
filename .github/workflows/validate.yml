@@ -14,8 +14,11 @@ jobs:
           python-version: "3.x"
       - name: Validate skill
         run: python3 scripts/validate_skill.py
-      - name: Check plugin.json is valid JSON
-        run: python3 -m json.tool .claude-plugin/plugin.json > /dev/null
+      - name: Check plugin manifests are valid JSON
+        run: |
+          python3 -m json.tool .claude-plugin/plugin.json > /dev/null
+          python3 -m json.tool .claude-plugin/marketplace.json > /dev/null
+          python3 -m json.tool .cursor-plugin/plugin.json > /dev/null
       - name: Test install.sh
         run: |
           bash -n install.sh

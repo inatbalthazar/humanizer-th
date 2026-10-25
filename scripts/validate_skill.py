@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Validate the humanizer-th skill: frontmatter, reference links, pattern codes."""
+import json
 import re
 import sys
 from pathlib import Path
@@ -80,13 +81,25 @@ def check_codes():
             errors.append(f"{f.relative_to(ROOT)} uses {code}, not defined in patterns.md")
 
 
+def check_versions():
+    m = re.search(r"^## \[(\d+\.\d+\.\d+)\]", read(ROOT / "CHANGELOG.md"), re.M)
+    if not m:
+        errors.append("CHANGELOG.md has no version heading (## [x.y.z])")
+        return
+    for manifest in (".claude-plugin/plugin.json", ".cursor-plugin/plugin.json"):
+        version = json.loads(read(ROOT / manifest)).get("version")
+        if version != m.group(1):
+            errors.append(f"{manifest} version {version!r} does not match CHANGELOG {m.group(1)!r}")
+
+
 check_frontmatter()
 check_reference_links()
 check_codes()
+check_versions()
 
 if errors:
     print("FAILED")
     for e in errors:
         print(f"  - {e}")
     sys.exit(1)
-print("OK: frontmatter, reference links and pattern codes are valid")
+print("OK: frontmatter, reference links, pattern codes and versions are valid")

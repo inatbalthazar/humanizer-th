@@ -1,0 +1,12 @@
+{
+  "name": "humanizer-th",
+  "description": "Rewrite and edit Thai text so it reads naturally, removing AI-writing tells and English-translation patterns while keeping meaning, facts and voice.",
+  "version": "0.2.2",
+  "author": {
+    "name": "inatbalthazar"
+  },
+  "homepage": "https://github.com/inatbalthazar/humanizer-th",
+  "repository": "https://github.com/inatbalthazar/humanizer-th",
+  "license": "MIT",
+  "keywords": ["thai", "writing", "editing", "humanizer"]
+}

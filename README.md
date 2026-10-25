@@ -1,6 +1,6 @@
 # humanizer-th
 
-![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg) ![version](https://img.shields.io/badge/version-0.2.1-green.svg)
+![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg) ![version](https://img.shields.io/badge/version-0.2.2-green.svg)
 
 Skill สำหรับเกลาภาษาไทยที่อ่านแล้วรู้เลยว่า AI เขียน ให้กลับมาอ่านเหมือนคนไทยเขียนเอง
 
@@ -53,36 +53,44 @@ skill จะไม่เติมข้อมูลที่ต้นฉบั�
 
 ## ติดตั้ง
 
-### คำสั่งเดียวจบ
+### Claude Code
 
-Mac หรือ Linux วางคำสั่งนี้ใน terminal
+พิมพ์ใน Claude Code
+
+```text
+/plugin marketplace add inatbalthazar/humanizer-th
+/plugin install humanizer-th@humanizer-th
+```
+
+### Codex
+
+```bash
+npx skills add inatbalthazar/humanizer-th --global --agent codex
+```
+
+### เครื่องมืออื่น
+
+```bash
+npx skills add inatbalthazar/humanizer-th --global --agent '*'
+```
+
+คำสั่งนี้ติดตั้งให้ทุกเครื่องมือที่ [skills CLI](https://github.com/vercel-labs/skills) รู้จัก เช่น Gemini CLI, GitHub Copilot, Cursor และ Windsurf ถ้าจะใช้แค่ในโปรเจกต์ที่เปิดอยู่ ให้ตัด `--global` ออก
+
+ถ้าเครื่องไม่มี Node.js ใช้สคริปต์นี้แทนได้ (Mac หรือ Linux)
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/inatbalthazar/humanizer-th/main/install.sh | bash
 ```
 
-สคริปต์จะติดตั้งลง `~/.agents/skills/` ซึ่ง Codex และเครื่องมืออื่นที่รองรับ Agent Skills อ่านได้ แล้วติดตั้งเพิ่มให้ Claude Code, Gemini CLI และ GitHub Copilot ถ้าเจอว่าเครื่องมีตัวไหนอยู่ รันซ้ำเมื่อไหร่ก็ได้ถ้าจะอัปเดตเป็นเวอร์ชันล่าสุด
+สคริปต์จะติดตั้งลง `~/.agents/skills/` แล้วลงให้ Claude Code, Gemini CLI และ GitHub Copilot ด้วยถ้าเจอในเครื่อง รันซ้ำเพื่ออัปเดตได้ ถ้าจะลบให้เติม `| bash -s -- --uninstall` แทน `| bash`
 
-ถ้าจะลบออก
+### Claude.ai และ Claude Desktop
 
-```bash
-curl -fsSL https://raw.githubusercontent.com/inatbalthazar/humanizer-th/main/install.sh | bash -s -- --uninstall
-```
-
-ถ้าเครื่องมี Node.js อยู่แล้ว ใช้ [skills CLI](https://github.com/vercel-labs/skills) ก็ได้ ตัวนี้ใช้ได้บน Windows ด้วย และจะถามว่าจะติดตั้งให้เครื่องมือไหนบ้าง
-
-```bash
-npx skills add inatbalthazar/humanizer-th -g
-```
+โหลด `humanizer-th.zip` จากหน้า [Releases](https://github.com/inatbalthazar/humanizer-th/releases) แล้วอัปโหลดใน Settings → Capabilities → Skills
 
 ### ติดตั้งเอง
 
-ถ้าไม่อยากรันสคริปต์ ให้คัดลอกโฟลเดอร์ `skills/humanizer-th` ไปวางในโฟลเดอร์ skill ของเครื่องมือที่ใช้
-
-```bash
-git clone https://github.com/inatbalthazar/humanizer-th.git
-cp -r humanizer-th/skills/humanizer-th ~/.claude/skills/    # เปลี่ยนปลายทางตามตารางข้างล่าง
-```
+คัดลอกโฟลเดอร์ `skills/humanizer-th` ไปไว้ในโฟลเดอร์ skill ของเครื่องมือที่ใช้
 
 | เครื่องมือ | ใช้กับทุกโปรเจกต์ | ใช้เฉพาะโปรเจกต์ |
 |---|---|---|
@@ -91,11 +99,7 @@ cp -r humanizer-th/skills/humanizer-th ~/.claude/skills/    # เปลี่ย
 | Gemini CLI | `~/.gemini/skills/` | `.gemini/skills/` |
 | GitHub Copilot ใน VS Code | `~/.copilot/skills/` | `.github/skills/` |
 
-ตัวอื่นที่รองรับ Agent Skills เช่น Cursor ส่วนใหญ่อ่าน `.agents/skills/` ได้ ถ้าไม่เจอให้ดูคู่มือของเครื่องมือนั้น เพราะแต่ละตัวเปลี่ยนที่วางไฟล์ได้ตามเวอร์ชัน
-
-### Claude.ai
-
-โหลด `humanizer-th.zip` จากหน้า [Releases](https://github.com/inatbalthazar/humanizer-th/releases) แล้วไปที่ Settings → Capabilities → Skills อัปโหลดไฟล์ zip ได้เลย
+เครื่องมือที่ไม่อยู่ในตาราง ส่วนใหญ่อ่าน `.agents/skills/` ได้ ถ้าไม่เจอให้ดูคู่มือของเครื่องมือนั้น
 
 ### ChatGPT, Gemini และ AI ตัวอื่น
 
