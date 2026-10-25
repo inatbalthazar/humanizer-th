@@ -1,6 +1,6 @@
 # humanizer-th
 
-![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg) ![version](https://img.shields.io/badge/version-0.4.0-green.svg)
+![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg) ![version](https://img.shields.io/badge/version-0.5.0-green.svg)
 
 ชุด skill ภาษาไทยสำหรับ AI แปลซับหนัง เกม แอป และเว็บไซต์เป็นภาษาไทยที่อ่านแล้วไม่รู้ว่าแปลมา เขียนบทละครสั้นและบทพากย์สำหรับวิดีโอ AI และเกลาข้อความที่ AI เขียนให้อ่านเหมือนคนไทยเขียนเอง
 
@@ -17,6 +17,12 @@
 | **humanizer-th** | เกลาข้อความไทยที่ AI เขียน เช่น โพสต์ อีเมล ข้อความ LINE และเขียนให้เป็นสำนวนของเราเองจากงานเก่าที่ส่งให้ดู | "เกลาให้หน่อย" "เขียนให้เหมือนที่เราเขียน" |
 
 ติดตั้งครั้งเดียวได้ทั้งสามตัว AI จะเลือกใช้ตัวที่ตรงกับคำสั่งเอง
+
+```bash
+npx humanizer-th
+```
+
+ไม่ใช้ terminal หรือใช้ ChatGPT กับ Gemini ดูหัวข้อ[ติดตั้ง](#ติดตั้ง)
 
 **ผู้ใช้ที่อ่านไทยไม่ออก** สั่งเป็นภาษาอังกฤษได้ งานที่ได้ยังเป็นภาษาไทย แต่บันทึกและคำอธิบายจะเป็นภาษาอังกฤษ งานสั้นจะมีคำแปลกลับเป็นภาษาอังกฤษให้ตรวจความหมายด้วย เหมาะกับบริษัทเกมและแอปต่างชาติที่จะออกเวอร์ชันไทย ดู[ตัวอย่าง](examples/localize-th/04-english-speaker.md) และ [README ภาษาอังกฤษ](README.en.md)
 
@@ -134,44 +140,25 @@ skill จะถามว่าจะใส่เสียงแบบไหน �
 
 ## ติดตั้ง
 
-### Claude Code
+### คำสั่งเดียว
 
-พิมพ์ใน Claude Code ได้ทั้งสาม skill
-
-```text
-/plugin marketplace add inatbalthazar/humanizer-th
-/plugin install humanizer-th@humanizer-th
-```
-
-### Codex
+เปิด Terminal (Mac) หรือ PowerShell (Windows) แล้วพิมพ์
 
 ```bash
-npx skills add inatbalthazar/humanizer-th --global --agent codex
+npx humanizer-th
 ```
 
-### เครื่องมืออื่น
+ติดตั้งทั้งสาม skill ให้ Claude Code, Codex, Gemini CLI และ GitHub Copilot ที่มีในเครื่อง เสร็จแล้วปิดเปิดโปรแกรมใหม่หนึ่งรอบ แล้วพิมพ์สั่งได้เลย
 
-```bash
-npx skills add inatbalthazar/humanizer-th --global --agent '*'
-```
+- ต้องมี Node.js 18 ขึ้นไป ถ้ายังไม่มี โหลดได้ที่ [nodejs.org](https://nodejs.org) (ถ้าใช้ Claude Code หรือ Codex อยู่ ส่วนใหญ่มีแล้ว)
+- ถ้าขึ้นว่า `Ok to proceed?` ให้กด `y`
+- อัปเดต `npx humanizer-th@latest` / ลบ `npx humanizer-th uninstall` / เลือกบางตัว `npx humanizer-th --skill localize-th` / ติดตั้งเฉพาะโปรเจกต์ที่เปิดอยู่ `npx humanizer-th --project`
 
-คำสั่งนี้ติดตั้งให้ทุกเครื่องมือที่ [skills CLI](https://github.com/vercel-labs/skills) รู้จัก เช่น Gemini CLI, GitHub Copilot, Cursor และ Windsurf ถ้าจะใช้แค่ในโปรเจกต์ที่เปิดอยู่ ให้ตัด `--global` ออก ถ้าต้องการแค่บางตัว เติม `--skill localize-th` เป็นต้น
+### ไม่ใช้ terminal
 
-ถ้าเครื่องไม่มี Node.js ใช้สคริปต์นี้แทนได้ (Mac หรือ Linux)
+**Claude.ai และ Claude Desktop:** โหลดไฟล์ zip ของ skill ที่ต้องการจากหน้า [Releases](https://github.com/inatbalthazar/humanizer-th/releases/latest) (`localize-th.zip` `script-th.zip` `humanizer-th.zip`) แล้วอัปโหลดทีละไฟล์ใน Settings → Capabilities → Skills
 
-```bash
-curl -fsSL https://raw.githubusercontent.com/inatbalthazar/humanizer-th/main/install.sh | bash
-```
-
-สคริปต์ติดตั้งทั้งสาม skill ลง `~/.agents/skills/` และลงให้ Claude Code, Gemini CLI, GitHub Copilot ด้วยถ้าเจอในเครื่อง รันซ้ำเพื่ออัปเดตได้ ถ้าต้องการแค่บางตัว ใช้ `| bash -s -- --skill localize-th` ถ้าจะลบ ใช้ `| bash -s -- --uninstall`
-
-### Claude.ai และ Claude Desktop
-
-โหลดไฟล์ zip ของ skill ที่ต้องการจากหน้า [Releases](https://github.com/inatbalthazar/humanizer-th/releases) (`localize-th.zip` `script-th.zip` `humanizer-th.zip`) แล้วอัปโหลดทีละไฟล์ใน Settings → Capabilities → Skills
-
-### ChatGPT, Gemini และ AI ตัวอื่น
-
-โหลดไฟล์รวมของ skill ที่ต้องการจากหน้า [Releases](https://github.com/inatbalthazar/humanizer-th/releases) (`localize-th-prompt.md` `script-th-prompt.md` `humanizer-th-prompt.md`) แต่ละไฟล์รวมทุกอย่างของ skill นั้นไว้ในไฟล์เดียว
+**ChatGPT, Gemini และ AI ตัวอื่น:** โหลดไฟล์รวมของ skill ที่ต้องการจากหน้า [Releases](https://github.com/inatbalthazar/humanizer-th/releases/latest) (`localize-th-prompt.md` `script-th-prompt.md` `humanizer-th-prompt.md`) แต่ละไฟล์รวมทุกอย่างของ skill นั้นไว้ในไฟล์เดียว
 
 - **ChatGPT:** สร้าง GPT หนึ่งตัวต่อหนึ่ง skill อัปโหลดไฟล์ในช่อง Knowledge แล้วพิมพ์ในช่อง Instructions ว่า "ทำตามคำสั่งในไฟล์ [ชื่อไฟล์] ทุกข้อ" (ช่อง Instructions รับได้ 8,000 ตัวอักษร วางทั้งไฟล์ไม่พอ)
 - **Gemini:** สร้าง Gem แล้ววางเนื้อหาทั้งไฟล์ในช่องคำสั่ง หรือแนบเป็นไฟล์
@@ -180,9 +167,31 @@ curl -fsSL https://raw.githubusercontent.com/inatbalthazar/humanizer-th/main/ins
 
 ไฟล์รวมยาว 59,000–94,000 ตัวอักษร ถ้าเรียกผ่าน API ทุกครั้งจะเสียค่า token พอสมควร เพราะภาษาไทยกิน token มากกว่าภาษาอังกฤษ
 
-### ติดตั้งเอง
+<details>
+<summary><strong>วิธีอื่น</strong> (plugin ของ Claude Code, skills CLI, เครื่องที่ไม่มี Node.js, ติดตั้งเอง)</summary>
 
-คัดลอกโฟลเดอร์ใน `skills/` ไปไว้ในโฟลเดอร์ skill ของเครื่องมือที่ใช้
+**plugin ของ Claude Code:** พิมพ์ใน Claude Code
+
+```text
+/plugin marketplace add inatbalthazar/humanizer-th
+/plugin install humanizer-th@humanizer-th
+```
+
+**skills CLI:** ติดตั้งให้ทุกเครื่องมือที่ [skills CLI](https://github.com/vercel-labs/skills) รู้จัก รวมถึง Cursor และ Windsurf
+
+```bash
+npx skills add inatbalthazar/humanizer-th --global --agent '*'
+```
+
+**ไม่มี Node.js (Mac หรือ Linux):**
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/inatbalthazar/humanizer-th/main/install.sh | bash
+```
+
+ต้องการแค่บางตัว ใช้ `| bash -s -- --skill localize-th` ถ้าจะลบ ใช้ `| bash -s -- --uninstall`
+
+**ติดตั้งเอง:** คัดลอกโฟลเดอร์ใน `skills/` ไปไว้ในโฟลเดอร์ skill ของเครื่องมือที่ใช้
 
 | เครื่องมือ | ใช้กับทุกโปรเจกต์ | ใช้เฉพาะโปรเจกต์ |
 |---|---|---|
@@ -191,9 +200,9 @@ curl -fsSL https://raw.githubusercontent.com/inatbalthazar/humanizer-th/main/ins
 | Gemini CLI | `~/.gemini/skills/` | `.gemini/skills/` |
 | GitHub Copilot ใน VS Code | `~/.copilot/skills/` | `.github/skills/` |
 
-เครื่องมือที่ไม่อยู่ในตาราง ส่วนใหญ่อ่าน `.agents/skills/` ได้ ถ้าไม่เจอให้ดูคู่มือของเครื่องมือนั้น
+เครื่องมือที่ไม่อยู่ในตาราง ส่วนใหญ่อ่าน `.agents/skills/` ได้ ถ้าจะสร้างไฟล์ zip และไฟล์รวมเองจากโค้ดล่าสุด รัน `bash scripts/build.sh` ไฟล์จะอยู่ในโฟลเดอร์ `dist/`
 
-ถ้าจะสร้างไฟล์ zip และไฟล์รวมเองจากโค้ดล่าสุด รัน `bash scripts/build.sh` ไฟล์จะอยู่ในโฟลเดอร์ `dist/`
+</details>
 
 ## สิ่งที่ไม่ทำ
 

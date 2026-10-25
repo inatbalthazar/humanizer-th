@@ -2,6 +2,19 @@
 
 รูปแบบตาม [Keep a Changelog](https://keepachangelog.com/) และใช้ [Semantic Versioning](https://semver.org/)
 
+## [0.5.0] - 2026-10-25
+
+### เพิ่ม
+
+- **ติดตั้งด้วยคำสั่งเดียว `npx humanizer-th`** ใช้ได้ทั้ง Mac, Windows และ Linux ติดตั้งทั้งสาม skill ให้ Claude Code, Codex, Gemini CLI และ GitHub Copilot ที่มีในเครื่อง มี `--skill` `--project` `--target` และ `uninstall`
+- แพ็กเกจ npm (`package.json`, `bin/cli.js`) และ workflow `publish.yml` ส่งขึ้น npm เมื่อสร้าง release
+- CI ทดสอบติดตั้งและลบผ่าน `npx` จากไฟล์แพ็กเกจจริง
+
+### เปลี่ยน
+
+- README ทั้งสองภาษาเหลือคำสั่งเดียวเป็นทางหลัก วิธีอื่นย้ายไปไว้ในหัวข้อพับ
+- `validate_skill.py` ตรวจเลขเวอร์ชันใน `package.json` ด้วย
+
 ## [0.4.0] - 2026-10-25
 
 ### เพิ่ม

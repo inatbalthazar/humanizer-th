@@ -11,6 +11,7 @@
 | `skills/script-th/` | skill เขียนบท |
 | `shared/` | ไฟล์ที่หลาย skill ใช้ร่วมกัน (`patterns.md` `registers.md` `word-swaps.md` `characters.md` `style.md`) |
 | `examples/` | ตัวอย่างของแต่ละ skill |
+| `bin/cli.js` | ตัวติดตั้งของ `npx humanizer-th` (Node.js ไม่มี dependency) |
 
 **ไฟล์ใน `shared/` ให้แก้ที่ `shared/` เท่านั้น** แล้วรัน `python3 scripts/sync_shared.py` เพื่อคัดลอกไปยังโฟลเดอร์ของแต่ละ skill ห้ามแก้สำเนาใน `skills/*/references/` ตรงๆ CI จะไม่ผ่าน
 
