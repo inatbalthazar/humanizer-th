@@ -1,6 +1,6 @@
 ---
 name: humanizer-th
-description: Rewrites and edits Thai-language text so it reads as if a native Thai writer wrote it, removing AI-writing tells and English-translation patterns (เช่น "ในยุคดิจิทัลปัจจุบัน", "ได้ทำการ", "ถูกพัฒนาโดย", คำเชื่อมทุกประโยค) while keeping meaning, facts, numbers, names and the author's voice. Four modes - ตรวจ (detect), เขียนใหม่ (rewrite, default), แก้เฉพาะจุด (edit) and เลียนสไตล์ (match the user's own writing samples) - across the four Thai registers taught in school - กันเอง, ไม่เป็นทางการ, กึ่งทางการ, ทางการ. Use when the user asks to ทำให้เป็นธรรมชาติ, ดูเป็น AI ไหม, ตรวจว่าตรงไหนดูเป็น AI, แก้ภาษาให้ลื่น, เกลาภาษา, ทำให้อ่านเหมือนคนเขียน, เขียนให้เหมือนที่เราเขียน, เลียนสไตล์จากตัวอย่าง, humanize Thai text, make my Thai sound natural, write in my style, or make Thai posts, emails, LINE messages, product descriptions, articles or reports sound natural. Thai text only. Not for other languages, not for English-to-Thai translation, not for impersonating other people, and not for evading AI detectors.
+description: Rewrites and edits Thai-language text so it reads as if a native Thai writer wrote it, removing AI-writing tells and English-translation patterns (เช่น "ในยุคดิจิทัลปัจจุบัน", "ได้ทำการ", "ถูกพัฒนาโดย", คำเชื่อมทุกประโยค) while keeping meaning, facts, numbers, names and the author's voice. Four modes - ตรวจ (detect), เขียนใหม่ (rewrite, default), แก้เฉพาะจุด (edit) and เลียนสไตล์ (match the user's own writing samples) - across the four Thai registers taught in school - กันเอง, ไม่เป็นทางการ, กึ่งทางการ, ทางการ. Use when the user asks to ทำให้เป็นธรรมชาติ, ดูเป็น AI ไหม, ปรับเป็นภาษาคน, แก้ภาษาให้ลื่น, เกลาภาษา, ทำให้อ่านเหมือนคนเขียน, เขียนให้เหมือนที่เราเขียน, เลียนสไตล์จากตัวอย่าง, humanize Thai text, make my Thai sound natural, write in my style, or make Thai posts, emails, LINE messages, product descriptions, articles or reports sound natural. Thai text only. Not for other languages, not for English-to-Thai translation, not for impersonating other people, and not for evading AI detectors.
 license: MIT
 ---
 
@@ -40,7 +40,7 @@ license: MIT
 | โหมด | เมื่อผู้ใช้พูดว่า | ทำอะไร |
 |---|---|---|
 | `ตรวจ` (detect) | "ตรวจว่าตรงไหนดูเป็น AI" "ดูเป็น AI ไหม" "ชี้จุดที่แข็งให้หน่อย" | รายการจุดที่เจอ พร้อมรหัสและเหตุผลสั้นๆ **ไม่แก้ข้อความ** |
-| `เขียนใหม่` (rewrite, ค่าเริ่มต้น) | "เขียนใหม่ให้เป็นธรรมชาติ" "เกลาให้หน่อย" หรือวางข้อความมาโดยไม่บอกโหมด | ข้อความใหม่ทั้งชิ้น + สรุปสิ่งที่เปลี่ยน 3–5 ข้อ |
+| `เขียนใหม่` (rewrite, ค่าเริ่มต้น) | "เขียนใหม่ให้เป็นธรรมชาติ" "ปรับเป็นภาษาคนหน่อย" "ช่วยแก้ให้อ่านลื่นๆ หน่อย" "เกลาให้หน่อย" หรือวางข้อความมาโดยไม่บอกโหมด | ข้อความใหม่ทั้งชิ้น + สรุปสิ่งที่เปลี่ยน 3–5 ข้อ |
 | `แก้เฉพาะจุด` (edit) | "แก้แค่จุดที่แข็งๆ พอ" "อย่าเปลี่ยนเยอะ" "คงโครงเดิมไว้" | แก้เฉพาะจุด คงโครงสร้าง ลำดับ และย่อหน้าเดิม + บอกว่าแก้ตรงไหน |
 | `เลียนสไตล์` (match style) | "เขียนให้เหมือนที่เราเขียน" "ใช้สำนวนแบบตัวอย่างนี้" หรือส่งงานเก่าของตัวเองมาพร้อมร่างหรือโจทย์ | ข้อความที่เขียนตามสำนวนของผู้ใช้ + โปรไฟล์สำนวนย่อ + สิ่งที่ปรับ |
 
