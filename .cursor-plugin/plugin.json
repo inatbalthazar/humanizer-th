@@ -1,7 +1,7 @@
 {
   "name": "humanizer-th",
   "description": "Thai-language skills: translate subtitles, games, apps and websites into natural Thai, write dialogue and voice scripts for AI short dramas, and edit AI-written Thai so it reads naturally.",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "author": {
     "name": "inatbalthazar"
   },
