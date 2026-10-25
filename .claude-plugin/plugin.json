@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "humanizer-th",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Thai-language skills: translate subtitles, games, apps and websites into natural Thai, write dialogue and voice scripts for AI short dramas, and edit AI-written Thai so it reads naturally or in your own style. Explanations come in the language you ask in.",
   "author": {
     "name": "inatbalthazar",

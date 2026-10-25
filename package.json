@@ -1,0 +1,35 @@
+{
+  "name": "humanizer-th",
+  "version": "0.5.0",
+  "description": "Thai-language Agent Skills: translate subtitles, games, apps and websites into natural Thai, write dialogue and voice scripts for AI short dramas, and edit AI-written Thai. One command installs them into Claude Code, Codex, Gemini CLI and Copilot.",
+  "bin": {
+    "humanizer-th": "bin/cli.js"
+  },
+  "files": [
+    "bin/",
+    "skills/",
+    "README.en.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "agent-skills",
+    "claude-code",
+    "codex",
+    "thai",
+    "translation",
+    "localization",
+    "subtitles",
+    "humanizer"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/inatbalthazar/humanizer-th.git"
+  },
+  "homepage": "https://github.com/inatbalthazar/humanizer-th#readme",
+  "bugs": "https://github.com/inatbalthazar/humanizer-th/issues",
+  "license": "MIT",
+  "author": "inatbalthazar"
+}

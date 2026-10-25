@@ -118,7 +118,7 @@ def check_versions():
     if not m:
         errors.append("CHANGELOG.md has no version heading (## [x.y.z])")
         return
-    for manifest in (".claude-plugin/plugin.json", ".cursor-plugin/plugin.json"):
+    for manifest in (".claude-plugin/plugin.json", ".cursor-plugin/plugin.json", "package.json"):
         version = json.loads(read(ROOT / manifest)).get("version")
         if version != m.group(1):
             errors.append(f"{manifest} version {version!r} does not match CHANGELOG {m.group(1)!r}")

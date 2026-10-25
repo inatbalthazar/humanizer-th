@@ -30,6 +30,22 @@ jobs:
           done
           HOME="$RUNNER_TEMP/home" bash install.sh --uninstall
           test -z "$(ls -A "$RUNNER_TEMP/home/.agents/skills")"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Test npx installer
+        run: |
+          npm pack --pack-destination "$RUNNER_TEMP"
+          export HOME="$RUNNER_TEMP/npmhome"
+          mkdir -p "$HOME/.claude"
+          cd "$RUNNER_TEMP"
+          npx -y ./humanizer-th-*.tgz
+          for s in humanizer-th localize-th script-th; do
+            test -f "$HOME/.agents/skills/$s/SKILL.md"
+            test -f "$HOME/.claude/skills/$s/SKILL.md"
+          done
+          npx -y ./humanizer-th-*.tgz uninstall
+          test -z "$(ls -A "$HOME/.agents/skills")"
       - name: Build zip and prompt bundle
         run: bash scripts/build.sh
       - uses: actions/upload-artifact@v4
