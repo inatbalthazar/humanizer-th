@@ -1,0 +1,15 @@
+msgid ""
+msgstr ""
+"Language: th\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. Button on the checkout page
+msgid "Pay %s now"
+msgstr "จ่าย %s เลย"
+
+msgid "Delete"
+msgstr ""
+
+msgid "%d file"
+msgid_plural "%d files"
+msgstr[0] "ไฟล์"

@@ -1,0 +1,4 @@
+interface:
+  display_name: "script-th"
+  short_description: "เขียนและเกลาบทพูดไทยสำหรับละครสั้น AI และเสียงพากย์ AI"
+  default_prompt: "ใช้ $script-th เกลาบทนี้ให้ตัวละครพูดเหมือนคนไทยจริง แล้วทำพรอมต์ทีละช็อต"

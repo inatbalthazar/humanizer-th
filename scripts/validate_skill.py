@@ -1,23 +1,33 @@
 #!/usr/bin/env python3
-"""Validate the humanizer-th skill: frontmatter, reference links, pattern codes."""
+"""Validate every skill in skills/: frontmatter, reference links, codes, shared copies, versions."""
 import json
 import re
+import subprocess
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-SKILL_DIR = ROOT / "skills" / "humanizer-th"
-SKILL_MD = SKILL_DIR / "SKILL.md"
-PATTERNS_MD = SKILL_DIR / "references" / "patterns.md"
+SKILLS_DIR = ROOT / "skills"
 EXAMPLES_DIR = ROOT / "examples"
 NAME_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
-CODE_RE = re.compile(r"\bTH\d{2}\b")
+
+# Pattern code prefix -> the file that defines its codes.
+CODE_FILES = {
+    "TH": ROOT / "shared" / "patterns.md",
+    "LT": SKILLS_DIR / "localize-th" / "references" / "translation.md",
+    "SC": SKILLS_DIR / "script-th" / "references" / "dialogue.md",
+}
+CODE_RE = re.compile(r"\b(" + "|".join(CODE_FILES) + r")\d{2}\b")
 
 errors = []
 
 
 def read(path):
     return path.read_text(encoding="utf-8")
+
+
+def rel(path):
+    return path.relative_to(ROOT)
 
 
 def parse_frontmatter(text):
@@ -32,53 +42,75 @@ def parse_frontmatter(text):
     return fields
 
 
-def check_frontmatter():
-    if not SKILL_MD.is_file():
-        errors.append(f"missing {SKILL_MD.relative_to(ROOT)}")
+def skill_dirs():
+    return sorted(p for p in SKILLS_DIR.iterdir() if p.is_dir())
+
+
+def check_skill(skill):
+    skill_md = skill / "SKILL.md"
+    if not skill_md.is_file():
+        errors.append(f"missing {rel(skill_md)}")
         return
-    fm = parse_frontmatter(read(SKILL_MD))
+    text = read(skill_md)
+    fm = parse_frontmatter(text)
     if fm is None:
-        errors.append("SKILL.md has no frontmatter (--- block at top)")
+        errors.append(f"{rel(skill_md)} has no frontmatter (--- block at top)")
         return
     name = fm.get("name", "")
     if not NAME_RE.match(name):
-        errors.append(f"name {name!r} must be lowercase letters, digits and hyphens")
-    elif name != SKILL_DIR.name:
-        errors.append(f"name {name!r} does not match folder {SKILL_DIR.name!r}")
+        errors.append(f"{rel(skill_md)}: name {name!r} must be lowercase letters, digits and hyphens")
+    elif name != skill.name:
+        errors.append(f"{rel(skill_md)}: name {name!r} does not match folder {skill.name!r}")
     desc = fm.get("description", "")
     if not desc:
-        errors.append("description is empty")
+        errors.append(f"{rel(skill_md)}: description is empty")
     elif len(desc) > 1024:
-        errors.append(f"description is {len(desc)} chars (max 1024)")
+        errors.append(f"{rel(skill_md)}: description is {len(desc)} chars (max 1024)")
+    for target in re.findall(r"\]\((references/[^)#]+)", text):
+        if not (skill / target).is_file():
+            errors.append(f"{rel(skill_md)} links to missing file {target}")
 
 
-def check_reference_links():
-    if not SKILL_MD.is_file():
-        return
-    for target in re.findall(r"\]\((references/[^)#]+)", read(SKILL_MD)):
-        if not (SKILL_DIR / target).is_file():
-            errors.append(f"SKILL.md links to missing file {target}")
+def defined_codes():
+    defined = {}
+    for prefix, path in CODE_FILES.items():
+        if not path.is_file():
+            errors.append(f"missing {rel(path)} (defines {prefix} codes)")
+            defined[prefix] = set()
+            continue
+        text = read(path)
+        sections = set(re.findall(rf"^### ({prefix}\d{{2}}) ", text, re.M))
+        indexed = set(re.findall(rf"^\| ({prefix}\d{{2}}) \|", text, re.M))
+        if not sections:
+            errors.append(f"{rel(path)} defines no {prefix} codes (### {prefix}xx headings)")
+        for code in sorted(sections - indexed):
+            errors.append(f"{rel(path)}: {code} has a section but is missing from the index")
+        for code in sorted(indexed - sections):
+            errors.append(f"{rel(path)}: {code} is in the index but has no section")
+        defined[prefix] = sections
+    return defined
 
 
-def check_codes():
-    if not PATTERNS_MD.is_file():
-        errors.append(f"missing {PATTERNS_MD.relative_to(ROOT)}")
-        return
-    defined = set(re.findall(r"^### (TH\d{2}) ", read(PATTERNS_MD), re.M))
-    if not defined:
-        errors.append("patterns.md defines no TH codes (### THxx headings)")
-    text = read(PATTERNS_MD)
-    indexed = set(re.findall(r"^\| (TH\d{2}) \|", text, re.M))
-    for code in sorted(defined - indexed):
-        errors.append(f"patterns.md: {code} has a section but is missing from the index")
-    for code in sorted(indexed - defined):
-        errors.append(f"patterns.md: {code} is in the index but has no section")
-    files = sorted(EXAMPLES_DIR.glob("*.md")) + sorted(
-        p for p in (SKILL_DIR / "references").glob("*.md") if p != PATTERNS_MD
-    )
+def check_code_usage(defined):
+    files = sorted(SKILLS_DIR.glob("*/SKILL.md")) + sorted(SKILLS_DIR.glob("*/references/*.md"))
+    files += sorted(ROOT.glob("shared/*.md")) + sorted(EXAMPLES_DIR.glob("**/*.md"))
+    defining_names = {prefix: path.name for prefix, path in CODE_FILES.items()}
     for f in files:
-        for code in sorted(set(CODE_RE.findall(read(f))) - defined):
-            errors.append(f"{f.relative_to(ROOT)} uses {code}, not defined in patterns.md")
+        for code in sorted({m.group(0) for m in CODE_RE.finditer(read(f))}):
+            prefix = code[:2]
+            if f.name == defining_names[prefix]:
+                continue  # the defining file and its copies are checked by defined_codes()
+            if code not in defined[prefix]:
+                errors.append(f"{rel(f)} uses {code}, not defined in {rel(CODE_FILES[prefix])}")
+
+
+def check_shared_copies():
+    result = subprocess.run(
+        [sys.executable, str(ROOT / "scripts" / "sync_shared.py"), "--check"],
+        capture_output=True, text=True,
+    )
+    if result.returncode != 0:
+        errors.append(result.stdout.strip())
 
 
 def check_versions():
@@ -92,9 +124,10 @@ def check_versions():
             errors.append(f"{manifest} version {version!r} does not match CHANGELOG {m.group(1)!r}")
 
 
-check_frontmatter()
-check_reference_links()
-check_codes()
+for skill in skill_dirs():
+    check_skill(skill)
+check_code_usage(defined_codes())
+check_shared_copies()
 check_versions()
 
 if errors:
@@ -102,4 +135,5 @@ if errors:
     for e in errors:
         print(f"  - {e}")
     sys.exit(1)
-print("OK: frontmatter, reference links, pattern codes and versions are valid")
+names = ", ".join(p.name for p in skill_dirs())
+print(f"OK: {names}: frontmatter, reference links, pattern codes, shared copies and versions are valid")

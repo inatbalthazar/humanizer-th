@@ -1,74 +1,73 @@
 # humanizer-th
 
-![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg) ![version](https://img.shields.io/badge/version-0.2.2-green.svg)
+![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg) ![version](https://img.shields.io/badge/version-0.3.0-green.svg)
 
-An [Agent Skill](https://agentskills.io) that rewrites and edits Thai text so it reads like a native writer wrote it. It removes AI-writing tells and English-translation patterns while keeping the meaning, facts and the author's voice.
+A set of Thai-language [Agent Skills](https://agentskills.io). Translate subtitles, games, apps and websites into Thai that doesn't read like a translation, write and polish dialogue for AI-generated short dramas and Thai AI voice-over, and edit AI-written Thai so it reads like a native writer wrote it.
+
+Works with Claude, ChatGPT, Gemini, Codex, GitHub Copilot, Cursor and any tool that supports Agent Skills. Tools without skill support can use a single bundled prompt file instead.
 
 [อ่านภาษาไทย](README.md)
 
-## Example
+## The skills
 
-A LINE message to a coworker. (Thai original; the English gloss is below each block.)
-
-**Before**
-
-> สวัสดีครับพี่เมย์ ผมหวังว่าพี่จะสบายดีนะครับ ผมต้องการที่จะขอความช่วยเหลือจากพี่ในเรื่องหนึ่งครับ เนื่องจากในวันเสาร์ที่ 7 นี้ ผมมีความจำเป็นต้องเดินทางกลับต่างจังหวัดเพื่อไปร่วมงานบวชของน้องชาย ดังนั้น ผมจึงอยากสอบถามว่าพี่จะสามารถช่วยเข้ากะแทนผมในช่วงเวลา 13.00–21.00 น. ได้หรือไม่ครับ ทั้งนี้ ผมยินดีที่จะเข้ากะแทนพี่ในวันอื่นเป็นการตอบแทนครับ ขอบคุณพี่มากๆ สำหรับการพิจารณาครับ 🙏
-
-*Gloss: "Hello P'May, I hope you are well. I would like to request your assistance on one matter. Due to the fact that this Saturday the 7th I am required to travel upcountry to attend my brother's ordination, therefore I would like to inquire whether you would be able to cover my shift... Furthermore, I am willing to cover your shift on another day in return. Thank you for your consideration."*
-
-**After**
-
-> พี่เมย์ครับ ขอรบกวนหน่อย เสาร์ที่ 7 นี้ผมต้องกลับต่างจังหวัดไปงานบวชน้องชาย พี่พอจะเข้ากะแทนผมช่วง 13.00–21.00 น. ได้ไหมครับ เดี๋ยวผมเข้ากะแทนพี่วันอื่นคืนให้ ขอบคุณมากครับ
-
-*Gloss: "P'May, could I ask a favor? This Saturday the 7th I have to go home for my brother's ordination. Could you cover my 13:00–21:00 shift? I'll cover one of yours in return. Thanks a lot."*
-
-The emoji at the end is removed. Numbers, names and the writer's polite particle "ครับ" are unchanged, and the text is less than half as long. More in [examples/](examples/).
-
-## Why an English humanizer doesn't work for Thai
-
-Existing humanizers (for example blader/humanizer) match English patterns. Thai differs in ways those rules cannot see:
-
-- **Grammar:** Thai has no tense or articles, drops the subject freely, and marks politeness through particles instead of word choice. "Translated" Thai shows up as `ได้ทำการ`, `ถูก...โดย` (passive) and `ซึ่ง...ซึ่ง...` chains, not as English tells like "delve" or "tapestry".
-- **Register:** Thai schools teach five register levels, from intimate to ceremonial, and readers notice when the wrong one is used. AI text often uses one register for every channel, such as government-letter Thai in a LINE message.
-- **Particles and pronouns:** `ครับ`/`ค่ะ` carry the writer's gender, and putting them on every sentence, or switching between them, is itself a tell. Overusing `คุณ` ("you") is another.
-- **Spacing and punctuation:** Thai uses spaces, not commas and full stops, to separate phrases and sentences. English-style punctuation is a tell, and so are emoji and "!", which Thai writers do not tack onto the end of messages.
-
-## Features
-
-**Three modes**
-
-| Mode | Example request | Output |
+| Skill | What it does | Example request |
 |---|---|---|
-| ตรวจ (check) | "Check which parts look AI-written" | List of findings with pattern codes and reasons. Does not edit. |
-| เขียนใหม่ (rewrite, default) | "Rewrite this to sound natural" | Full new text plus a short summary of changes |
-| แก้เฉพาะจุด (fix spots) | "Just fix the stiff parts" | Targeted fixes, original structure kept |
+| **localize-th** | English to Thai for subtitles, dubbing scripts, app and website strings, and games | "แปลซับนี้เป็นไทย" / "Translate this strings file into Thai" |
+| **script-th** | Writes and polishes Thai dialogue for AI short dramas, per-shot video prompts, and TTS-ready voice scripts | "เขียนบทละครสั้นเรื่อง..." / "Polish this script" |
+| **humanizer-th** | Edits AI-written Thai posts, emails and chat messages | "เกลาให้หน่อย" / "Make this sound natural" |
 
-Mode and register names are in Thai because that is what the skill writes in its output.
+Install once and the agent picks the right skill for each request.
 
-**Four registers**, named after the register levels taught in Thai schools (the fifth, ceremonial, is out of scope):
+## localize-th: subtitles, games, apps and websites
 
-| Register | Used for |
-|---|---|
-| กันเอง (intimate) | Chat with friends, family, close people |
-| ไม่เป็นทางการ (informal) | Social posts, blogs, chat with a boss or coworkers |
-| กึ่งทางการ (semi-formal) | Everyday work email, customer messages |
-| ทางการ (formal) | Reports, official letters, academic writing |
+| Source | Typical machine translation | localize-th |
+|---|---|---|
+| Oh no. (subtitle) | โอ้ไม่ ("oh no", literal) | ซวยแล้ว ("I'm in trouble") |
+| Payment failed. (app) | การชำระเงินล้มเหลว ("the payment has failed") | ชำระเงินไม่สำเร็จ ("payment didn't go through") |
+| Your cart (app) | ตะกร้าของคุณ ("your cart") | ตะกร้า ("cart"; Thai UI drops "your") |
+| No haggling, my back can't take it. (game) | literal joke that falls flat | ห้ามต่อนะ ข้าแก่แล้ว เถียงไม่ไหว ("no haggling, I'm too old to argue") |
 
-If you don't say, the skill infers one and tells you which.
+- **Files stay valid:** subtitle timings and block numbers, keys, placeholders (`{name}`, `%s`, `[PlayerName]`, ICU plurals) and tags are kept exactly.
+- **Readable subtitles:** at most 35 characters per line, 2 lines, about 20 characters per second, line breaks on word boundaries (Thai has no spaces between words). The defaults follow Netflix's Thai timed-text guide and can be overridden.
+- **Characters sound like people:** pronouns and particles are chosen per relationship and kept consistent. English "I" and "you" have a dozen Thai equivalents.
+- **Consistent terms:** follows your glossary, or a built-in glossary of standard Thai UI and game terms with Royal Institute spellings.
+- **Checker script:** `skills/localize-th/scripts/check_translation.py` compares a translation with its source (SRT, VTT, ASS, JSON, ARB, PO, XLIFF, `.strings`, Android XML, CSV) and reports broken timings, missing keys or placeholders, long lines and reading speed. Agents that can run commands run it themselves.
 
-**What the skill never touches**
+```bash
+python3 skills/localize-th/scripts/check_translation.py en.srt th.srt
+```
 
-- Facts, numbers, dates, names, brands and prices never change.
-- Quoted speech, links, code and proper nouns are left alone.
-- No information is added that the original doesn't contain.
-- The writer's `ครับ`/`ค่ะ` is preserved, never swapped.
-- If the text already reads naturally, the skill says so and changes as little as possible.
+Examples: [SRT subtitles](examples/localize-th/01-subtitle-srt.md), [app JSON](examples/localize-th/02-app-ui-json.md), [game CSV](examples/localize-th/03-game-dialogue-csv.md).
+
+## script-th: AI short dramas and Thai voice-over
+
+Four modes: write a script from an idea, polish an existing script without changing the story, turn it into per-shot prompts for AI video tools, and prepare a voice script that Thai TTS reads correctly (numbers as words, unambiguous spellings, pauses and voice direction).
+
+- Character sheets with fixed English visual descriptions, copied verbatim into every shot prompt for consistency.
+- Lines sized to the clip length using a syllable estimate, with long lines split across shots.
+- Twelve AI-dialogue tells (SC01–SC12), such as characters naming their feelings, exposition dumps, stock lines from short dramas and everyone sounding the same.
+- Three ways to add Thai speech (native audio from the video model, separate TTS with lip-sync, or narration and subtitles), because many video models still speak Thai poorly.
+
+Examples: [write from an idea](examples/script-th/01-write-short-drama.md), [polish an AI script](examples/script-th/02-polish-ai-script.md), [shot prompts and voice script](examples/script-th/03-shot-prompts-and-voice.md).
+
+## humanizer-th: AI-written Thai
+
+Three modes (ตรวจ check, เขียนใหม่ rewrite, แก้เฉพาะจุด fix spots) across the four registers taught in Thai schools: กันเอง (intimate), ไม่เป็นทางการ (informal), กึ่งทางการ (semi-formal) and ทางการ (formal). It checks 29 patterns (TH01–TH29), most of which Thai grammar classes call ประโยคฟุ่มเฟือย (redundant sentences) and สำนวนต่างประเทศ (foreign-style phrasing). See [patterns.md](shared/patterns.md) and [examples/humanizer-th/](examples/humanizer-th/).
+
+### Why English humanizers don't work for Thai
+
+- **Grammar:** Thai has no tense or articles, drops subjects freely, and marks politeness with particles. Translated Thai shows up as `ได้ทำการ`, `ถูก...โดย` (passive) and `ซึ่ง...ซึ่ง...` chains, not as "delve" or "tapestry".
+- **Register:** readers notice the wrong register immediately, such as government-letter Thai in a LINE message.
+- **Particles and pronouns:** `ครับ`/`ค่ะ` carry the writer's gender. Putting one on every sentence, or mixing them, is a tell, and so is overusing `คุณ` ("you").
+- **Punctuation:** Thai separates phrases with spaces, not commas and full stops. English punctuation, emoji and "!" are tells.
+
+**None of the skills change** facts, numbers, dates, names, brands, links, code or the writer's `ครับ`/`ค่ะ`, and none add information that isn't in the source.
 
 ## Install
 
 ### Claude Code
 
-In Claude Code:
+Installs all three skills:
 
 ```text
 /plugin marketplace add inatbalthazar/humanizer-th
@@ -87,23 +86,34 @@ npx skills add inatbalthazar/humanizer-th --global --agent codex
 npx skills add inatbalthazar/humanizer-th --global --agent '*'
 ```
 
-This installs humanizer-th for every agent the [Skills CLI](https://github.com/vercel-labs/skills) supports, including Gemini CLI, GitHub Copilot, Cursor and Windsurf. Leave off `--global` to install it only in the current project.
+This installs for every agent the [Skills CLI](https://github.com/vercel-labs/skills) supports, including Gemini CLI, GitHub Copilot, Cursor and Windsurf. Leave off `--global` to install only in the current project, and add `--skill localize-th` (for example) to pick one skill.
 
-Without Node.js, use the install script instead (macOS or Linux):
+Without Node.js, use the install script (macOS or Linux):
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/inatbalthazar/humanizer-th/main/install.sh | bash
 ```
 
-It installs into `~/.agents/skills/`, plus Claude Code, Gemini CLI and GitHub Copilot if it finds them. Run it again to update; replace `| bash` with `| bash -s -- --uninstall` to remove it.
+It installs all three skills into `~/.agents/skills/`, plus Claude Code, Gemini CLI and GitHub Copilot if it finds them. Run it again to update. Use `| bash -s -- --skill localize-th` for one skill and `| bash -s -- --uninstall` to remove them.
 
 ### Claude.ai and Claude Desktop
 
-Download `humanizer-th.zip` from [Releases](https://github.com/inatbalthazar/humanizer-th/releases) and upload it under Settings → Capabilities → Skills.
+Download the zip for each skill you want from [Releases](https://github.com/inatbalthazar/humanizer-th/releases) (`localize-th.zip`, `script-th.zip`, `humanizer-th.zip`) and upload them one at a time under Settings → Capabilities → Skills.
+
+### ChatGPT, Gemini and other AI tools
+
+Download the bundled prompt for each skill from [Releases](https://github.com/inatbalthazar/humanizer-th/releases) (`localize-th-prompt.md`, `script-th-prompt.md`, `humanizer-th-prompt.md`):
+
+- **ChatGPT:** one GPT per skill. Upload the file under Knowledge and set Instructions to "ทำตามคำสั่งในไฟล์ [file name] ทุกข้อ" (Instructions is capped at 8,000 characters, too short for the whole file).
+- **Gemini:** create a Gem and paste the whole file into its instructions, or attach it.
+- **API:** use the whole file as the system prompt.
+- **Any chat:** attach the file and ask the model to follow it.
+
+The bundles are 48,000 to 85,000 characters. Thai uses more tokens than English, so sending one on every API call adds up.
 
 ### Manual install
 
-Copy `skills/humanizer-th` into the agent's skills folder:
+Copy the folders in `skills/` into the agent's skills folder:
 
 | Tool | All projects | One project |
 |---|---|---|
@@ -112,56 +122,23 @@ Copy `skills/humanizer-th` into the agent's skills folder:
 | Gemini CLI | `~/.gemini/skills/` | `.gemini/skills/` |
 | GitHub Copilot in VS Code | `~/.copilot/skills/` | `.github/skills/` |
 
-Agents not in the table mostly read `.agents/skills/`. Check the agent's docs if it doesn't pick the skill up.
-
-### ChatGPT, Gemini and other AI tools
-
-Download `humanizer-th-prompt.md` from [Releases](https://github.com/inatbalthazar/humanizer-th/releases). It bundles every skill file into one file:
-
-- **ChatGPT:** create a GPT, upload the file under Knowledge, and set Instructions to "ทำตามคำสั่งในไฟล์ humanizer-th-prompt.md ทุกข้อ" (Instructions is capped at 8,000 characters, too short for the whole file).
-- **Gemini:** create a Gem and paste the whole file into its instructions, or attach it.
-- **API:** use the whole file as the system prompt.
-- **Any chat:** attach the file and ask the model to follow it before pasting your text.
-
-The file is about 48,000 characters. Thai uses more tokens than English, so sending it on every API call adds up.
-
-To build both files from source, run `bash scripts/build.sh`. Output goes to `dist/`.
-
-## Usage
-
-Paste Thai text with a request. Requests can be in Thai or English.
-
-```text
-Rewrite this naturally, informal register, for a Facebook post.
-[paste text]
-```
-
-```text
-Check which parts of this look AI-written.
-[paste text]
-```
-
-## Patterns
-
-29 patterns (TH01–TH29) in five categories: sentences, words, tone and register, structure and format, spacing and punctuation. Each has a code, why it reads as AI, a before/after, and **when not to fix it**. Most of them are what Thai grammar classes call ประโยคฟุ่มเฟือย (redundant sentences) and สำนวนต่างประเทศ (foreign-style phrasing); the rest are chatbot habits such as emoji and "!". Sources are listed at the end of patterns.md. See [patterns.md](skills/humanizer-th/references/patterns.md), [registers.md](skills/humanizer-th/references/registers.md) and [word-swaps.md](skills/humanizer-th/references/word-swaps.md).
+Agents not in the table mostly read `.agents/skills/`. To build the zips and prompt bundles from source, run `bash scripts/build.sh`; output goes to `dist/`.
 
 ## What this is not
 
-**This skill is for making Thai easier to read. It is not an AI-detector evasion tool.** It is not designed to avoid detection, and it will never deliberately insert spelling or grammar mistakes to look human.
-
-It is also not a translator; English-to-Thai translation is a different task.
+- **Not an AI-detector evasion tool.** The goal is text that is easier for Thai readers, and the skills never insert deliberate mistakes.
+- **No scripts that put words in real people's mouths** for AI video, unless the user is that person or has permission, and no deceptive content such as fake news or scam clips.
+- **English source only** for translation for now.
 
 ## Limitations
 
-- Thai text only.
-- It is guidance the model follows, not a program with deterministic output. Review the result before using it.
-- It has only been tested in depth with Claude. Other models get the same rules, but results depend on how well the model handles Thai.
-- What counts as "natural" depends on the writer and reader. Some patterns are matters of taste, so each one lists exceptions.
-- There is no automated test suite yet (see [CHANGELOG](CHANGELOG.md)).
+- The skills are guidance the model follows, not deterministic programs. Review the output, and have a native Thai reader check translations before publishing.
+- Tested in depth with Claude only. Results with other models depend on how well they handle Thai.
+- Shot prompts and voice scripts have not yet been run through real video and TTS tools. The syllables-per-second figure is an estimate to calibrate on the first shot. See [tests/manual-test-v0.3.md](tests/manual-test-v0.3.md).
 
 ## Contributing
 
-To propose a new pattern or a fix, see [CONTRIBUTING.md](CONTRIBUTING.md).
+See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
 
