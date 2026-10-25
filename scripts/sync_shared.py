@@ -15,9 +15,9 @@ SHARED = ROOT / "shared"
 
 # Which shared files each skill uses.
 USES = {
-    "humanizer-th": ["patterns.md", "registers.md", "word-swaps.md"],
-    "localize-th": ["patterns.md", "registers.md", "word-swaps.md", "characters.md"],
-    "script-th": ["patterns.md", "registers.md", "characters.md"],
+    "humanizer-th": ["patterns.md", "registers.md", "word-swaps.md", "style.md"],
+    "localize-th": ["patterns.md", "registers.md", "word-swaps.md", "characters.md", "style.md"],
+    "script-th": ["patterns.md", "registers.md", "characters.md", "style.md"],
 }
 
 

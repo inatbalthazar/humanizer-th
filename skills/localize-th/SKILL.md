@@ -1,6 +1,6 @@
 ---
 name: localize-th
-description: Translates English into natural Thai for subtitles (SRT, VTT, ASS), dubbing scripts, app and website UI strings (JSON, PO, XLIFF, iOS .strings, Android XML, ARB, CSV), game text (dialogue, items, skills, quests, menus) and plain pasted text, then reviews existing Thai translations. Keeps timestamps, keys, placeholders and markup intact, follows Thai subtitle limits (35 characters per line, 2 lines, reading speed), picks pronouns and particles per character, keeps terms consistent with a glossary, and removes translationese and AI-writing tells. Modes - แปล (translate, default), ตรวจคำแปล (review) and แก้คำแปล (fix). Use when the user asks to แปลซับ, แปลซับไตเติล, แปลบทพากย์, แปลเกม, แปล UI, แปลแอป, แปลเว็บ, ทำ localization, ตรวจคำแปลไทย, or translate subtitles, game text, app strings or website copy into Thai. English source only. Not for Thai-to-English, and not for rewriting Thai that was written in Thai (use humanizer-th).
+description: Translates English into natural Thai for subtitles (SRT, VTT, ASS), dubbing scripts, app and website UI strings (JSON, PO, XLIFF, iOS .strings, Android XML, ARB, CSV), game text (dialogue, items, skills, quests, menus) and plain pasted text, then reviews existing Thai translations. Keeps timestamps, keys, placeholders and markup intact, follows Thai subtitle limits (35 characters per line, 2 lines, reading speed), picks pronouns and particles per character, keeps terms consistent with a glossary, and removes translationese and AI-writing tells. Explains in the user's language, with back-translations for non-Thai readers. Modes - แปล (translate, default), ตรวจคำแปล (review) and แก้คำแปล (fix). Use when the user asks to แปลซับ, แปลซับไตเติล, แปลบทพากย์, แปลเกม, แปล UI, แปลแอป, แปลเว็บ, ทำ localization, ตรวจคำแปลไทย, or translate subtitles, game text, app strings or website copy into Thai. English source only. Not for Thai-to-English, and not for rewriting Thai that was written in Thai (use humanizer-th).
 license: MIT
 ---
 
@@ -40,6 +40,7 @@ license: MIT
 | [references/patterns.md](references/patterns.md) | ตรวจรูปแบบภาษาแบบ AI TH01–TH29 ในคำแปล |
 | [references/registers.md](references/registers.md) | เลือกระดับภาษาของข้อความที่ไม่ใช่บทพูด |
 | [references/word-swaps.md](references/word-swaps.md) | หาคำแทนสำนวนแข็ง |
+| [references/style.md](references/style.md) | ผู้ใช้ให้งานแปลเดิมมา แล้วต้องแปลต่อให้เข้ากัน |
 
 ## เลือกโหมด
 
@@ -121,6 +122,13 @@ python3 scripts/check_translation.py ไฟล์.po
 
 ## รูปแบบคำตอบ
 
+### ภาษาของคำตอบ
+
+- **คำแปลเป็นภาษาไทยเสมอ**
+- **ส่วนที่อธิบายให้ผู้ใช้อ่าน ใช้ภาษาเดียวกับคำขอ:** บันทึกการแปล รายการที่ตรวจเจอ จุดที่แก้ คำถาม และหัวข้อในแบบคำตอบด้านล่าง ถ้าผู้ใช้สั่งเป็นภาษาอังกฤษ ให้เขียนส่วนนี้เป็นภาษาอังกฤษทั้งหมด เช่น `บันทึกการแปล:` เป็น `Translation notes:` ถ้าสั่งเป็นภาษาไทยหรือไทยปนอังกฤษ ใช้ภาษาไทย
+- **คำไทยที่ยกมาอ้างในคำอธิบาย** คงเป็นภาษาไทย แล้วบอกความหมายในวงเล็บ เช่น "นาย" (casual "you", used between friends) รหัส LTxx และ THxx คงไว้เหมือนเดิม
+- **คำแปลกลับ:** ถ้าผู้ใช้สั่งเป็นภาษาอื่นที่ไม่ใช่ไทย หรือบอกว่าอ่านไทยไม่ออก และงานมีไม่เกินราว 30 บรรทัด บล็อก หรือ key ให้แนบตารางคำแปลกลับไว้ท้ายคำตอบ ใต้หัวข้อ `Back-translation:` (คอลัมน์ บล็อกหรือ key / ไทย / คำแปลกลับ) ถ้ายาวกว่านั้น ให้บอกในบันทึกว่าทำให้ได้ ห้ามใส่คำแปลกลับลงในไฟล์คำแปลเด็ดขาด เขียนคำแปลกลับตามความหมายจริงของภาษาไทย ไม่ต้องเกลาให้สวย เพราะมีไว้ให้ผู้ใช้ตรวจว่าความหมายยังตรง และบอกสิ่งที่ภาษาไทยใส่เพิ่มไว้ในวงเล็บ เช่น `(polite, female speaker)` `(calls him "older brother")`
+
 ### `แปล`
 
 ```
@@ -166,7 +174,7 @@ python3 scripts/check_translation.py ไฟล์.po
 - **มุกและการเล่นคำ:** หามุกไทยที่ให้ผลใกล้เคียงกัน ถ้าหาไม่ได้ ให้แปลความหมายให้เข้าใจ แล้วบอกในบันทึกการแปล
 - **ป้ายและตัวหนังสือบนจอ:** แปลเมื่อเกี่ยวกับเรื่อง ใส่วงเล็บหรือตำแหน่งตามที่ผู้ใช้กำหนด
 - **ต้นฉบับผิดหรือกำกวม:** แปลตามเจตนาที่น่าจะเป็น แล้วบอกในบันทึก
-- **ผู้ใช้ให้คำแปลเก่ามาด้วย:** ใช้คำศัพท์และสรรพนามให้ต่อเนื่องกับของเดิม
+- **ผู้ใช้ให้งานแปลเดิมมาด้วย** (ซับตอนก่อน ข้อความในแอปเวอร์ชันเดิม งานของทีมแปลเดิม): ทำโปรไฟล์ตาม `style.md` แล้วแปลให้เข้ากับของเดิม ทั้งคำศัพท์ สรรพนาม การพูดกับผู้ใช้ และความแรงของภาษา ถ้างานเดิมขัดกับค่าเริ่มต้นของ skill ให้ยึดงานเดิมเพื่อความต่อเนื่อง ยกเว้นจุดที่ผิดชัดๆ เช่น แปลผิดความหมาย หรือตัวแปรหาย ให้แจ้งในบันทึกการแปล
 - **เนื้อหาเฉพาะทาง** (กฎหมาย การแพทย์ การเงิน): แปลให้ตรงความหมาย แจ้งในบันทึกว่าควรให้ผู้เชี่ยวชาญตรวจอีกรอบ
 
 ## ตัวอย่างสั้น

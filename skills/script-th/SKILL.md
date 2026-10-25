@@ -1,6 +1,6 @@
 ---
 name: script-th
-description: Writes and polishes Thai dialogue for AI-generated short dramas and Thai AI voice-over. Turns an idea or outline into a script, rewrites stiff Thai lines so characters sound like real Thai people, splits scenes into shots that fit the clip length of AI video tools (Veo, Kling, Hailuo, Runway, Seedance and others), writes per-shot prompts with fixed character descriptions, and prepares TTS-ready voice scripts (numbers as words, unambiguous spelling, pauses, voice direction). Modes - เขียนบท (write), เกลาบท (polish, default when a script is given), ทำพรอมต์ (shot prompts) and เตรียมบทพากย์ (voice script). Use when the user asks to เขียนบทละครสั้น, เขียนบทพูด, เกลาบท, ทำบทพากย์, พากย์เสียง AI, ทำพรอมต์วิดีโอ, ละครสั้น AI, ซีรีส์แนวตั้ง, or write Thai dialogue, scripts, voice-over or video prompts for AI video. Thai dialogue only. Not for impersonating real people.
+description: Writes and polishes Thai dialogue for AI-generated short dramas and Thai AI voice-over. Turns an idea or outline into a script, rewrites stiff Thai lines so characters sound like real Thai people, splits scenes into shots that fit the clip length of AI video tools (Veo, Kling, Hailuo, Runway, Seedance and others), writes per-shot prompts with fixed character descriptions, and prepares TTS-ready voice scripts (numbers as words, unambiguous spelling, pauses, voice direction). Explains in the user's language, with back-translations for non-Thai readers. Modes - เขียนบท (write), เกลาบท (polish, default when a script is given), ทำพรอมต์ (shot prompts) and เตรียมบทพากย์ (voice script). Use when the user asks to เขียนบทละครสั้น, เขียนบทพูด, เกลาบท, ทำบทพากย์, พากย์เสียง AI, ทำพรอมต์วิดีโอ, ละครสั้น AI, ซีรีส์แนวตั้ง, or write Thai dialogue, scripts, voice-over or video prompts for AI video. Thai dialogue only. Not for impersonating real people.
 license: MIT
 ---
 
@@ -37,6 +37,7 @@ license: MIT
 | [references/voice.md](references/voice.md) | เตรียมบทให้ AI พากย์เสียง ตัวเลข คำอ่านยาก จังหวะ อารมณ์ |
 | [references/patterns.md](references/patterns.md) | ตรวจรูปแบบภาษาแบบ AI TH01–TH29 ในคำบรรยายและข้อความบนจอ |
 | [references/registers.md](references/registers.md) | ระดับภาษาของคำบรรยายและข้อความที่ไม่ใช่บทพูด |
+| [references/style.md](references/style.md) | ผู้ใช้ส่งบทเก่าของตัวเองหรือตอนก่อนมา แล้วอยากให้ตอนใหม่เป็นสไตล์เดิม |
 
 ## เลือกโหมด
 
@@ -113,6 +114,13 @@ license: MIT
 
 ## รูปแบบคำตอบ
 
+### ภาษาของคำตอบ
+
+- **บทพูด บทพากย์ และข้อความบนจอเป็นภาษาไทยเสมอ** ส่วนพรอมต์วิดีโอเป็นภาษาอังกฤษตาม `video-prompts.md` เหมือนเดิม
+- **ส่วนที่อธิบายให้ผู้ใช้อ่าน ใช้ภาษาเดียวกับคำขอ:** ตารางตัวละคร คำบรรยายฉาก บันทึก สรุปสิ่งที่เปลี่ยน คำถาม และหัวข้อในแบบคำตอบด้านล่าง ถ้าผู้ใช้สั่งเป็นภาษาอังกฤษ ให้เขียนส่วนนี้เป็นภาษาอังกฤษทั้งหมด เช่น `บันทึก:` เป็น `Notes:` ถ้าสั่งเป็นภาษาไทยหรือไทยปนอังกฤษ ใช้ภาษาไทย
+- **คำไทยที่ยกมาอ้างในคำอธิบาย** คงเป็นภาษาไทย แล้วบอกความหมายในวงเล็บ เช่น "พี่" (calls him "older brother", polite and close) รหัส SCxx คงไว้เหมือนเดิม
+- **คำแปลกลับ:** ถ้าผู้ใช้สั่งเป็นภาษาอื่นที่ไม่ใช่ไทย หรือบอกว่าอ่านไทยไม่ออก ให้แนบคำแปลกลับของบทพูดทุกบรรทัดไว้ท้ายตอน ใต้หัวข้อ `Back-translation:` เรียงตามฉาก ถ้าบทยาวหลายตอน ให้แนบทีละตอน เขียนคำแปลกลับตามความหมายจริงของภาษาไทย ไม่ต้องเกลาให้สวย เพราะมีไว้ให้ผู้ใช้ตรวจว่าความหมายยังตรง และบอกสิ่งที่ภาษาไทยใส่เพิ่มไว้ในวงเล็บ เช่น `(polite, female speaker)` `(calls him "older brother")`
+
 ### `เขียนบท` และ `เกลาบท`
 
 ```
@@ -148,6 +156,7 @@ license: MIT
 ## กรณีพิเศษ
 
 - **ผู้ใช้ส่งบทที่ AI อื่นเขียนมา:** ใช้ `เกลาบท` ตามปกติ ส่วนใหญ่จะเจอ SC01 SC02 SC06 มาก
+- **ผู้ใช้ส่งบทเก่าของตัวเอง หรือตอนก่อนของเรื่องเดียวกันมา:** ทำโปรไฟล์ตาม `style.md` แล้วเขียนหรือเกลาให้เข้ากับของเดิม ทั้งสรรพนามของตัวละคร ความแรงของภาษา และจังหวะของฉาก ถ้าบทเดิมมีรูปแบบ SC เป็นประจำ เช่น ตัวละครบอกความรู้สึกตรงๆ (SC01) ไม่ต้องเลียน ให้บอกในบันทึก
 - **ผู้ใช้อยากได้ภาษาถิ่น** (อีสาน เหนือ ใต้): เขียนได้ แต่บอกในบันทึกว่าให้คนที่พูดภาษาถิ่นนั้นตรวจอีกรอบ และเตือนว่าเสียง AI หลายตัวอ่านภาษาถิ่นไม่ถูก
 - **ผู้ใช้ส่งบทภาษาอังกฤษมา:** แนะนำให้แปลด้วย `localize-th` ก่อน ถ้าผู้ใช้อยากให้ทำในขั้นเดียว ทำได้ โดยแปลแบบเขียนบทใหม่ ไม่ใช่แปลทีละบรรทัด
 - **เครื่องมือสร้างวิดีโออ่านไทยผิด หรือใส่ตัวหนังสือมั่วบนจอ:** ดู `video-prompts.md` หัวข้อปัญหาที่พบบ่อย
