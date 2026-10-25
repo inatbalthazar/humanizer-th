@@ -1,6 +1,6 @@
 {
   "name": "humanizer-th",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Thai-language Agent Skills: translate subtitles, games, apps and websites into natural Thai, write dialogue and voice scripts for AI short dramas, and edit AI-written Thai. One command installs them into Claude Code, Codex, Gemini CLI and Copilot.",
   "bin": {
     "humanizer-th": "bin/cli.js"

@@ -1,6 +1,6 @@
 # humanizer-th
 
-![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg) ![version](https://img.shields.io/badge/version-0.5.0-green.svg)
+![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg) ![version](https://img.shields.io/badge/version-0.5.1-green.svg)
 
 A set of Thai-language [Agent Skills](https://agentskills.io). Translate subtitles, games, apps and websites into Thai that doesn't read like a translation, write and polish dialogue for AI-generated short dramas and Thai AI voice-over, and edit AI-written Thai so it reads like a native writer wrote it.
 

@@ -1,6 +1,6 @@
 # humanizer-th
 
-![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg) ![version](https://img.shields.io/badge/version-0.5.0-green.svg)
+![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg) ![version](https://img.shields.io/badge/version-0.5.1-green.svg)
 
 ชุด skill ภาษาไทยสำหรับ AI แปลซับหนัง เกม แอป และเว็บไซต์เป็นภาษาไทยที่อ่านแล้วไม่รู้ว่าแปลมา เขียนบทละครสั้นและบทพากย์สำหรับวิดีโอ AI และเกลาข้อความที่ AI เขียนให้อ่านเหมือนคนไทยเขียนเอง
 
