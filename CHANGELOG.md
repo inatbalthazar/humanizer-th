@@ -2,6 +2,14 @@
 
 รูปแบบตาม [Keep a Changelog](https://keepachangelog.com/) และใช้ [Semantic Versioning](https://semver.org/)
 
+## [0.2.1] - 2026-10-25
+
+### เพิ่ม
+
+- `install.sh` ติดตั้งด้วยคำสั่งเดียวผ่าน `curl ... | bash` ลงทุกเครื่องมือที่เจอในเครื่อง รันซ้ำเพื่ออัปเดต และใช้ `--uninstall` เพื่อลบ
+- README บอกวิธีติดตั้งผ่าน `npx skills add` สำหรับคนที่มี Node.js หรือใช้ Windows
+- CI ลองรัน `install.sh` ทุกครั้ง
+
 ## [0.2.0] - 2026-10-25
 
 ### เพิ่ม

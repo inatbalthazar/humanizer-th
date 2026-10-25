@@ -16,6 +16,13 @@ jobs:
         run: python3 scripts/validate_skill.py
       - name: Check plugin.json is valid JSON
         run: python3 -m json.tool .claude-plugin/plugin.json > /dev/null
+      - name: Test install.sh
+        run: |
+          bash -n install.sh
+          HOME="$RUNNER_TEMP/home" HUMANIZER_TH_SRC=skills/humanizer-th bash install.sh
+          test -f "$RUNNER_TEMP/home/.agents/skills/humanizer-th/SKILL.md"
+          HOME="$RUNNER_TEMP/home" bash install.sh --uninstall
+          test ! -e "$RUNNER_TEMP/home/.agents/skills/humanizer-th"
       - name: Build zip and prompt bundle
         run: bash scripts/build.sh
       - uses: actions/upload-artifact@v4

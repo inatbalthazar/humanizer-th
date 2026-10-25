@@ -1,6 +1,6 @@
 # humanizer-th
 
-![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg) ![version](https://img.shields.io/badge/version-0.2.0-green.svg)
+![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg) ![version](https://img.shields.io/badge/version-0.2.1-green.svg)
 
 An [Agent Skill](https://agentskills.io) that rewrites and edits Thai text so it reads like a native writer wrote it. It removes AI-writing tells and English-translation patterns while keeping the meaning, facts and the author's voice.
 
@@ -66,12 +66,29 @@ If you don't say, the skill infers one and tells you which.
 
 ## Install
 
-Each [release](https://github.com/inatbalthazar/humanizer-th/releases) ships two files:
+### One command
 
-- `humanizer-th.zip`: the skill folder, for tools that support Agent Skills.
-- `humanizer-th-prompt.md`: every skill file bundled into one Markdown file, for AI tools without skill support.
+On macOS or Linux, paste this into a terminal:
 
-### Tools that support Agent Skills
+```bash
+curl -fsSL https://raw.githubusercontent.com/inatbalthazar/humanizer-th/main/install.sh | bash
+```
+
+The script installs into `~/.agents/skills/`, which Codex and other Agent Skills tools read, plus Claude Code, Gemini CLI and GitHub Copilot if it finds their config folders. Run it again any time to update.
+
+To remove it:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/inatbalthazar/humanizer-th/main/install.sh | bash -s -- --uninstall
+```
+
+If you have Node.js, the [skills CLI](https://github.com/vercel-labs/skills) also works, including on Windows, and asks which tools to install into:
+
+```bash
+npx skills add inatbalthazar/humanizer-th -g
+```
+
+### Manual install
 
 Copy `skills/humanizer-th` into the tool's skills folder:
 
@@ -89,11 +106,13 @@ cp -r humanizer-th/skills/humanizer-th ~/.claude/skills/    # change the target 
 
 Other tools with Agent Skills support, such as Cursor, mostly read `.agents/skills/`. Check the tool's docs if it doesn't pick the skill up; locations change between versions.
 
-**Claude.ai:** go to Settings → Capabilities → Skills and upload `humanizer-th.zip`.
+### Claude.ai
+
+Download `humanizer-th.zip` from [Releases](https://github.com/inatbalthazar/humanizer-th/releases), then go to Settings → Capabilities → Skills and upload it.
 
 ### ChatGPT, Gemini and other AI tools
 
-Use `humanizer-th-prompt.md`:
+Download `humanizer-th-prompt.md` from [Releases](https://github.com/inatbalthazar/humanizer-th/releases). It bundles every skill file into one file:
 
 - **ChatGPT:** create a GPT, upload the file under Knowledge, and set Instructions to "ทำตามคำสั่งในไฟล์ humanizer-th-prompt.md ทุกข้อ" (Instructions is capped at 8,000 characters, too short for the whole file).
 - **Gemini:** create a Gem and paste the whole file into its instructions, or attach it.
