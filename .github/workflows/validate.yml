@@ -16,5 +16,9 @@ jobs:
         run: python3 scripts/validate_skill.py
       - name: Check plugin.json is valid JSON
         run: python3 -m json.tool .claude-plugin/plugin.json > /dev/null
-      - name: Build zip
-        run: bash scripts/build_zip.sh
+      - name: Build zip and prompt bundle
+        run: bash scripts/build.sh
+      - uses: actions/upload-artifact@v4
+        with:
+          name: humanizer-th
+          path: dist/

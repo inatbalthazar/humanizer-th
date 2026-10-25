@@ -1,8 +1,8 @@
 # humanizer-th
 
-![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg) ![version](https://img.shields.io/badge/version-0.1.2-green.svg)
+![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg) ![version](https://img.shields.io/badge/version-0.2.0-green.svg)
 
-A Claude skill that rewrites and edits Thai text so it reads like a native writer wrote it. It removes AI-writing tells and English-translation patterns while keeping the meaning, facts and the author's voice.
+An [Agent Skill](https://agentskills.io) that rewrites and edits Thai text so it reads like a native writer wrote it. It removes AI-writing tells and English-translation patterns while keeping the meaning, facts and the author's voice.
 
 [อ่านภาษาไทย](README.md)
 
@@ -66,20 +66,43 @@ If you don't say, the skill infers one and tells you which.
 
 ## Install
 
-### Claude.ai (zip upload)
+Each [release](https://github.com/inatbalthazar/humanizer-th/releases) ships two files:
 
-1. Download `humanizer-th.zip` from [Releases](https://github.com/inatbalthazar/humanizer-th/releases), or build it with `scripts/build_zip.sh`.
-2. Go to Settings → Capabilities → Skills and upload the zip.
-3. Enable the skill and start a conversation.
+- `humanizer-th.zip`: the skill folder, for tools that support Agent Skills.
+- `humanizer-th-prompt.md`: every skill file bundled into one Markdown file, for AI tools without skill support.
 
-### Claude Code
+### Tools that support Agent Skills
 
-Copy the skill folder into `~/.claude/skills/`:
+Copy `skills/humanizer-th` into the tool's skills folder:
 
 ```bash
 git clone https://github.com/inatbalthazar/humanizer-th.git
-cp -r humanizer-th/skills/humanizer-th ~/.claude/skills/
+cp -r humanizer-th/skills/humanizer-th ~/.claude/skills/    # change the target per the table below
 ```
+
+| Tool | All projects | One project |
+|---|---|---|
+| Claude Code | `~/.claude/skills/` | `.claude/skills/` |
+| Codex CLI | `~/.agents/skills/` | `.agents/skills/` |
+| Gemini CLI | `~/.gemini/skills/` | `.gemini/skills/` |
+| GitHub Copilot in VS Code | `~/.copilot/skills/` | `.github/skills/` |
+
+Other tools with Agent Skills support, such as Cursor, mostly read `.agents/skills/`. Check the tool's docs if it doesn't pick the skill up; locations change between versions.
+
+**Claude.ai:** go to Settings → Capabilities → Skills and upload `humanizer-th.zip`.
+
+### ChatGPT, Gemini and other AI tools
+
+Use `humanizer-th-prompt.md`:
+
+- **ChatGPT:** create a GPT, upload the file under Knowledge, and set Instructions to "ทำตามคำสั่งในไฟล์ humanizer-th-prompt.md ทุกข้อ" (Instructions is capped at 8,000 characters, too short for the whole file).
+- **Gemini:** create a Gem and paste the whole file into its instructions, or attach it.
+- **API:** use the whole file as the system prompt.
+- **Any chat:** attach the file and ask the model to follow it before pasting your text.
+
+The file is about 48,000 characters. Thai uses more tokens than English, so sending it on every API call adds up.
+
+To build both files from source, run `bash scripts/build.sh`. Output goes to `dist/`.
 
 ## Usage
 
@@ -108,7 +131,8 @@ It is also not a translator; English-to-Thai translation is a different task.
 ## Limitations
 
 - Thai text only.
-- It is guidance Claude follows, not a program with deterministic output. Review the result before using it.
+- It is guidance the model follows, not a program with deterministic output. Review the result before using it.
+- It has only been tested in depth with Claude. Other models get the same rules, but results depend on how well the model handles Thai.
 - What counts as "natural" depends on the writer and reader. Some patterns are matters of taste, so each one lists exceptions.
 - There is no automated test suite yet (see [CHANGELOG](CHANGELOG.md)).
 

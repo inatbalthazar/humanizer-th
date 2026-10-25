@@ -2,6 +2,19 @@
 
 รูปแบบตาม [Keep a Changelog](https://keepachangelog.com/) และใช้ [Semantic Versioning](https://semver.org/)
 
+## [0.2.0] - 2026-10-25
+
+### เพิ่ม
+
+- ใช้กับ AI ตัวอื่นได้ นอกจาก Claude: README บอกที่วางโฟลเดอร์ skill ของ Codex CLI, Gemini CLI และ GitHub Copilot
+- `scripts/build_prompt.py` รวม SKILL.md กับไฟล์อ้างอิงทั้งหมดเป็น `humanizer-th-prompt.md` ไฟล์เดียว สำหรับ ChatGPT, Gemini หรือเรียกผ่าน API
+- CI เก็บไฟล์ zip และไฟล์รวมไว้ให้โหลดจากหน้า Actions
+
+### เปลี่ยน
+
+- `scripts/build_zip.sh` เปลี่ยนชื่อเป็น `scripts/build.sh` และสร้างไฟล์ทั้งสองไว้ในโฟลเดอร์ `dist/`
+- SKILL.md เพิ่ม `license: MIT` ใน frontmatter ตามมาตรฐาน Agent Skills และเลิกใช้คำว่า "โหลด" ที่ผูกกับวิธีของ Claude
+
 ## [0.1.2] - 2026-10-25
 
 ### เปลี่ยน

@@ -1,8 +1,10 @@
 # humanizer-th
 
-![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg) ![version](https://img.shields.io/badge/version-0.1.2-green.svg)
+![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg) ![version](https://img.shields.io/badge/version-0.2.0-green.svg)
 
-Skill ของ Claude สำหรับเกลาภาษาไทยที่อ่านแล้วรู้เลยว่า AI เขียน ให้กลับมาอ่านเหมือนคนไทยเขียนเอง
+Skill สำหรับเกลาภาษาไทยที่อ่านแล้วรู้เลยว่า AI เขียน ให้กลับมาอ่านเหมือนคนไทยเขียนเอง
+
+ใช้ได้กับ Claude, ChatGPT, Gemini, Codex, GitHub Copilot และ AI ตัวอื่นที่รองรับ [Agent Skills](https://agentskills.io) ตัวที่ไม่รองรับก็ใช้ได้ โดยวางไฟล์รวมเป็นคำสั่งแทน
 
 [English](README.en.md)
 
@@ -51,20 +53,43 @@ skill จะไม่เติมข้อมูลที่ต้นฉบั�
 
 ## ติดตั้ง
 
-### Claude.ai
+ในหน้า [Releases](https://github.com/inatbalthazar/humanizer-th/releases) มีให้โหลด 2 ไฟล์
 
-1. โหลด `humanizer-th.zip` จากหน้า [Releases](https://github.com/inatbalthazar/humanizer-th/releases)
-2. ไปที่ Settings → Capabilities → Skills แล้วอัปโหลดไฟล์ zip
-3. เปิดใช้ skill แล้วเริ่มใช้ได้เลย
+- `humanizer-th.zip` โฟลเดอร์ skill สำหรับเครื่องมือที่รองรับ Agent Skills
+- `humanizer-th-prompt.md` ทุกไฟล์ของ skill รวมเป็นไฟล์เดียว สำหรับ AI ที่ไม่รองรับ skill
 
-### Claude Code
+### เครื่องมือที่รองรับ Agent Skills
 
-คัดลอกโฟลเดอร์ skill ไปไว้ที่ `~/.claude/skills/`
+เอาโฟลเดอร์ `skills/humanizer-th` ไปวางไว้ในโฟลเดอร์ skill ของเครื่องมือนั้น
 
 ```bash
 git clone https://github.com/inatbalthazar/humanizer-th.git
-cp -r humanizer-th/skills/humanizer-th ~/.claude/skills/
+cp -r humanizer-th/skills/humanizer-th ~/.claude/skills/    # เปลี่ยนปลายทางตามตารางข้างล่าง
 ```
+
+| เครื่องมือ | ใช้กับทุกโปรเจกต์ | ใช้เฉพาะโปรเจกต์ |
+|---|---|---|
+| Claude Code | `~/.claude/skills/` | `.claude/skills/` |
+| Codex CLI | `~/.agents/skills/` | `.agents/skills/` |
+| Gemini CLI | `~/.gemini/skills/` | `.gemini/skills/` |
+| GitHub Copilot ใน VS Code | `~/.copilot/skills/` | `.github/skills/` |
+
+ตัวอื่นที่รองรับ Agent Skills เช่น Cursor ส่วนใหญ่อ่าน `.agents/skills/` ได้ ถ้าไม่เจอให้ดูคู่มือของเครื่องมือนั้น เพราะแต่ละตัวเปลี่ยนที่วางไฟล์ได้ตามเวอร์ชัน
+
+**Claude.ai** ไม่ต้อง clone ไปที่ Settings → Capabilities → Skills แล้วอัปโหลด `humanizer-th.zip` ได้เลย
+
+### ChatGPT, Gemini และ AI ตัวอื่น
+
+ใช้ไฟล์ `humanizer-th-prompt.md`
+
+- **ChatGPT:** สร้าง GPT ใหม่ อัปโหลดไฟล์ในช่อง Knowledge แล้วพิมพ์ในช่อง Instructions ว่า "ทำตามคำสั่งในไฟล์ humanizer-th-prompt.md ทุกข้อ" (ช่อง Instructions รับได้ 8,000 ตัวอักษร วางทั้งไฟล์ไม่พอ)
+- **Gemini:** สร้าง Gem ใหม่ แล้ววางเนื้อหาทั้งไฟล์ในช่องคำสั่ง หรือแนบเป็นไฟล์
+- **เรียกผ่าน API:** ใช้เนื้อหาทั้งไฟล์เป็น system prompt
+- **แชตทั่วไป:** แนบไฟล์ แล้วพิมพ์ว่าให้ทำตามไฟล์นี้ ก่อนวางข้อความที่จะเกลา
+
+ไฟล์นี้ยาวประมาณ 48,000 ตัวอักษร ถ้าเรียกผ่าน API ทุกครั้งจะเสียค่า token พอสมควร เพราะภาษาไทยกิน token มากกว่าภาษาอังกฤษ
+
+ถ้าจะสร้างไฟล์เองจากโค้ดล่าสุด รัน `bash scripts/build.sh` ไฟล์จะอยู่ในโฟลเดอร์ `dist/`
 
 ## วิธีใช้
 
@@ -122,7 +147,8 @@ skill นี้ทำมาให้คนอ่านอ่านง่าย�
 ## ข้อจำกัด
 
 - ใช้กับภาษาไทยอย่างเดียว
-- Claude ทำตามคำแนะนำในไฟล์ ไม่ได้รันเป็นโปรแกรม ผลแต่ละครั้งจึงไม่เหมือนกันเป๊ะ ควรอ่านทวนก่อนเอาไปใช้
+- AI ทำตามคำแนะนำในไฟล์ ไม่ได้รันเป็นโปรแกรม ผลแต่ละครั้งจึงไม่เหมือนกันเป๊ะ ควรอ่านทวนก่อนเอาไปใช้
+- ทดสอบละเอียดกับ Claude เท่านั้น ตัวอื่นใช้กฎชุดเดียวกัน แต่ผลขึ้นกับว่าโมเดลนั้นเก่งภาษาไทยแค่ไหน
 - บางรูปแบบเป็นเรื่องรสนิยม ทุกรูปแบบจึงเขียนไว้ด้วยว่าตอนไหนไม่ต้องแก้
 - ยังไม่มีชุดทดสอบอัตโนมัติ
 
