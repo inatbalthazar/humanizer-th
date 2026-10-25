@@ -95,7 +95,7 @@ function install(opts) {
 เสร็จแล้ว ถ้าเปิดโปรแกรม AI อยู่ ให้ปิดแล้วเปิดใหม่ก่อน แล้วลองพิมพ์
   "แปลซับนี้เป็นไทย" แล้วแนบไฟล์ซับ
   "เขียนบทละครสั้นเรื่อง..."
-  "เกลาให้หน่อย" ตามด้วยข้อความภาษาไทย
+  "ช่วยแก้ให้อ่านลื่นๆ หน่อย" แล้ววางข้อความภาษาไทย
 
 Done. Restart your AI tool, then just ask, e.g. "Translate this subtitle file into Thai".
 อัปเดตเวอร์ชันใหม่ / update: npx humanizer-th@latest`);
