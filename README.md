@@ -1,6 +1,6 @@
 # humanizer-th
 
-![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg) ![version](https://img.shields.io/badge/version-0.1.1-green.svg)
+![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg) ![version](https://img.shields.io/badge/version-0.1.2-green.svg)
 
 Skill ของ Claude สำหรับเกลาภาษาไทยที่อ่านแล้วรู้เลยว่า AI เขียน ให้กลับมาอ่านเหมือนคนไทยเขียนเอง
 

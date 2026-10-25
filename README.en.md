@@ -1,6 +1,6 @@
 # humanizer-th
 
-![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg) ![version](https://img.shields.io/badge/version-0.1.1-green.svg)
+![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg) ![version](https://img.shields.io/badge/version-0.1.2-green.svg)
 
 A Claude skill that rewrites and edits Thai text so it reads like a native writer wrote it. It removes AI-writing tells and English-translation patterns while keeping the meaning, facts and the author's voice.
 
