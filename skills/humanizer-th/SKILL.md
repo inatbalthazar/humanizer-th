@@ -1,6 +1,7 @@
 ---
 name: humanizer-th
 description: Rewrites and edits Thai-language text so it reads as if a native Thai writer wrote it, removing AI-writing tells and English-translation patterns (เช่น "ในยุคดิจิทัลปัจจุบัน", "ได้ทำการ", "ถูกพัฒนาโดย", คำเชื่อมทุกประโยค) while keeping meaning, facts, numbers, names and the author's voice. Three modes - ตรวจ (detect), เขียนใหม่ (rewrite, default) and แก้เฉพาะจุด (edit) - across the four Thai registers taught in school - กันเอง, ไม่เป็นทางการ, กึ่งทางการ, ทางการ. Use when the user asks to ทำให้เป็นธรรมชาติ, ดูเป็น AI ไหม, ตรวจว่าตรงไหนดูเป็น AI, แก้ภาษาให้ลื่น, เกลาภาษา, ทำให้อ่านเหมือนคนเขียน, humanize Thai text, or make Thai posts, emails, LINE messages, product descriptions, articles or reports sound natural. Thai text only. Not for other languages, not for English-to-Thai translation, and not for evading AI detectors.
+license: MIT
 ---
 
 # humanizer-th
@@ -22,7 +23,7 @@ description: Rewrites and edits Thai-language text so it reads as if a native Th
 
 ## ไฟล์อ้างอิง
 
-โหลดเมื่อจำเป็น ไม่ต้องโหลดทุกไฟล์ทุกครั้ง
+เปิดอ่านเมื่อจำเป็น ไม่ต้องอ่านทุกไฟล์ทุกครั้ง
 
 | ไฟล์ | ใช้เมื่อ |
 |---|---|

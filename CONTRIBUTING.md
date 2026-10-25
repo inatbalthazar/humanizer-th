@@ -53,5 +53,6 @@
 ## ก่อนส่ง PR
 
 - รัน `python3 scripts/validate_skill.py` ให้ผ่าน สคริปต์นี้เช็ก frontmatter ลิงก์ไปไฟล์ใน `references/` และรหัสรูปแบบที่อ้างในตัวอย่าง
+- ถ้าแก้ไฟล์ใน `skills/` ลองรัน `bash scripts/build.sh` ด้วย ว่าสร้างไฟล์ zip กับไฟล์รวมได้
 - ข้อความ commit ขึ้นต้นด้วย `feat:` `fix:` `docs:` หรือ `chore:`
 - เล่าใน PR สั้นๆ ว่าไปเจอรูปแบบนี้จากข้อความแบบไหน
