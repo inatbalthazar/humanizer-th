@@ -1,0 +1,4 @@
+interface:
+  display_name: "localize-th"
+  short_description: "แปลซับ เกม แอป และเว็บไซต์เป็นภาษาไทยที่เป็นธรรมชาติ"
+  default_prompt: "ใช้ $localize-th แปลไฟล์นี้เป็นภาษาไทย คงเวลา key และตัวแปรไว้ครบ"
