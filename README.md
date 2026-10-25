@@ -1,6 +1,6 @@
 # humanizer-th
 
-![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg) ![version](https://img.shields.io/badge/version-0.1.0-green.svg)
+![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg) ![version](https://img.shields.io/badge/version-0.1.1-green.svg)
 
 Skill สำหรับ Claude ที่ช่วยเขียนและแก้ภาษาไทยให้อ่านเป็นธรรมชาติ ตัดร่องรอยการเขียนแบบ AI และสำนวนแปลจากอังกฤษ โดยรักษาความหมาย ข้อเท็จจริง และน้ำเสียงของผู้เขียนไว้
 
