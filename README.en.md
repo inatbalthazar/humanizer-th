@@ -18,11 +18,11 @@ A LINE message to a coworker. (Thai original; the English gloss is below each bl
 
 **After**
 
-> พี่เมย์ครับ ขอรบกวนหน่อย เสาร์ที่ 7 นี้ผมต้องกลับต่างจังหวัดไปงานบวชน้องชาย พี่พอจะเข้ากะแทนผมช่วง 13.00–21.00 น. ได้ไหมครับ เดี๋ยวผมเข้ากะแทนพี่วันอื่นคืนให้ ขอบคุณมากครับ 🙏
+> พี่เมย์ครับ ขอรบกวนหน่อย เสาร์ที่ 7 นี้ผมต้องกลับต่างจังหวัดไปงานบวชน้องชาย พี่พอจะเข้ากะแทนผมช่วง 13.00–21.00 น. ได้ไหมครับ เดี๋ยวผมเข้ากะแทนพี่วันอื่นคืนให้ ขอบคุณมากครับ
 
 *Gloss: "P'May, could I ask a favor? This Saturday the 7th I have to go home for my brother's ordination. Could you cover my 13:00–21:00 shift? I'll cover one of yours in return. Thanks a lot."*
 
-Numbers, names and the writer's polite particle "ครับ" are unchanged, and the text is less than half as long. More in [examples/](examples/).
+The emoji at the end is removed. Numbers, names and the writer's polite particle "ครับ" are unchanged, and the text is less than half as long. More in [examples/](examples/).
 
 ## Why an English humanizer doesn't work for Thai
 
@@ -31,7 +31,7 @@ Existing humanizers (for example blader/humanizer) match English patterns. Thai 
 - **Grammar:** Thai has no tense or articles, drops the subject freely, and marks politeness through particles instead of word choice. "Translated" Thai shows up as `ได้ทำการ`, `ถูก...โดย` (passive) and `ซึ่ง...ซึ่ง...` chains, not as English tells like "delve" or "tapestry".
 - **Register:** Thai splits sharply between chat, casual, professional and formal. AI text often uses one register for every channel, such as government-letter Thai in a LINE message.
 - **Particles and pronouns:** `ครับ`/`ค่ะ` carry the writer's gender, and putting them on every sentence, or switching between them, is itself a tell. Overusing `คุณ` ("you") is another.
-- **Spacing and punctuation:** Thai uses spaces, not commas and full stops, to separate phrases and sentences. English-style punctuation is a tell.
+- **Spacing and punctuation:** Thai uses spaces, not commas and full stops, to separate phrases and sentences. English-style punctuation is a tell, and so are emoji and "!", which Thai writers do not tack onto the end of messages.
 
 ## Features
 
@@ -86,7 +86,7 @@ Check which parts of this look AI-written.
 
 ## Patterns
 
-28 patterns (TH01–TH28) in five categories: sentences, words, tone and register, structure and format, spacing and punctuation. Each has a code, why it reads as AI, a before/after, and **when not to fix it**. See [patterns.md](skills/humanizer-th/references/patterns.md), [registers.md](skills/humanizer-th/references/registers.md) and [word-swaps.md](skills/humanizer-th/references/word-swaps.md).
+29 patterns (TH01–TH29) in five categories: sentences, words, tone and register, structure and format, spacing and punctuation. Each has a code, why it reads as AI, a before/after, and **when not to fix it**. See [patterns.md](skills/humanizer-th/references/patterns.md), [registers.md](skills/humanizer-th/references/registers.md) and [word-swaps.md](skills/humanizer-th/references/word-swaps.md).
 
 ## What this is not
 
