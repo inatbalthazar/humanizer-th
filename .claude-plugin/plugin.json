@@ -6,7 +6,7 @@
     "name": "inatbalthazar",
     "url": "https://github.com/inatbalthazar"
   },
-  "repository": "https://github.com/inatbalthazar/Thai-Humanizer",
+  "repository": "https://github.com/inatbalthazar/humanizer-th",
   "license": "MIT",
   "keywords": ["thai", "writing", "humanizer", "skill"],
   "skills": "./skills/"

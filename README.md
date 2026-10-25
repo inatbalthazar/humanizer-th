@@ -44,7 +44,7 @@ Skill สำหรับ Claude ที่ช่วยเขียนและแ
 
 ### Claude.ai (อัปโหลด zip)
 
-1. ดาวน์โหลด `humanizer-th.zip` จากหน้า [Releases](https://github.com/inatbalthazar/Thai-Humanizer/releases) (หรือสร้างเองด้วย `scripts/build_zip.sh`)
+1. ดาวน์โหลด `humanizer-th.zip` จากหน้า [Releases](https://github.com/inatbalthazar/humanizer-th/releases) (หรือสร้างเองด้วย `scripts/build_zip.sh`)
 2. เปิด Settings → Capabilities → Skills แล้วอัปโหลดไฟล์ zip
 3. เปิดใช้ skill แล้วเริ่มคุยได้เลย
 
@@ -53,8 +53,8 @@ Skill สำหรับ Claude ที่ช่วยเขียนและแ
 คัดลอกโฟลเดอร์ skill ไปไว้ที่ `~/.claude/skills/`
 
 ```bash
-git clone https://github.com/inatbalthazar/Thai-Humanizer.git
-cp -r Thai-Humanizer/skills/humanizer-th ~/.claude/skills/
+git clone https://github.com/inatbalthazar/humanizer-th.git
+cp -r humanizer-th/skills/humanizer-th ~/.claude/skills/
 ```
 
 ## วิธีใช้

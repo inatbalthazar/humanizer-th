@@ -57,7 +57,7 @@ Existing humanizers (for example blader/humanizer) match English patterns. Thai 
 
 ### Claude.ai (zip upload)
 
-1. Download `humanizer-th.zip` from [Releases](https://github.com/inatbalthazar/Thai-Humanizer/releases), or build it with `scripts/build_zip.sh`.
+1. Download `humanizer-th.zip` from [Releases](https://github.com/inatbalthazar/humanizer-th/releases), or build it with `scripts/build_zip.sh`.
 2. Go to Settings → Capabilities → Skills and upload the zip.
 3. Enable the skill and start a conversation.
 
@@ -66,8 +66,8 @@ Existing humanizers (for example blader/humanizer) match English patterns. Thai 
 Copy the skill folder into `~/.claude/skills/`:
 
 ```bash
-git clone https://github.com/inatbalthazar/Thai-Humanizer.git
-cp -r Thai-Humanizer/skills/humanizer-th ~/.claude/skills/
+git clone https://github.com/inatbalthazar/humanizer-th.git
+cp -r humanizer-th/skills/humanizer-th ~/.claude/skills/
 ```
 
 ## Usage

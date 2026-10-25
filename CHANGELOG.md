@@ -2,7 +2,7 @@
 
 รูปแบบตาม [Keep a Changelog](https://keepachangelog.com/) และใช้ [Semantic Versioning](https://semver.org/)
 
-## [0.1.0] - ยังไม่เผยแพร่
+## [0.1.0] - 2026-10-25
 
 ฉบับแรก
 
