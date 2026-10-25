@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "humanizer-th",
+  "owner": {
+    "name": "inatbalthazar",
+    "url": "https://github.com/inatbalthazar"
+  },
+  "description": "Install humanizer-th as a Claude Code plugin.",
+  "plugins": [
+    {
+      "name": "humanizer-th",
+      "source": "./",
+      "description": "Rewrite and edit Thai text so it reads naturally, removing AI-writing tells and English-translation patterns while keeping meaning, facts and voice.",
+      "license": "MIT",
+      "keywords": ["thai", "writing", "editing", "humanizer"]
+    }
+  ]
+}

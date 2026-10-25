@@ -2,6 +2,19 @@
 
 รูปแบบตาม [Keep a Changelog](https://keepachangelog.com/) และใช้ [Semantic Versioning](https://semver.org/)
 
+## [0.2.2] - 2026-10-25
+
+### เพิ่ม
+
+- `.claude-plugin/marketplace.json` ติดตั้งใน Claude Code ได้ด้วย `/plugin marketplace add inatbalthazar/humanizer-th`
+- `.cursor-plugin/plugin.json` สำหรับ Cursor
+- `skills/humanizer-th/agents/openai.yaml` ชื่อ คำอธิบาย และคำสั่งตัวอย่างที่ Codex แสดง
+- `validate_skill.py` เช็กว่าเลขเวอร์ชันใน plugin.json ทั้งสองไฟล์ตรงกับ CHANGELOG
+
+### เปลี่ยน
+
+- README จัดหัวข้อติดตั้งใหม่ แยกตามเครื่องมือ และใช้ `npx skills add` เป็นทางหลักสำหรับเครื่องมือที่ไม่ใช่ Claude
+
 ## [0.2.1] - 2026-10-25
 
 ### เพิ่ม

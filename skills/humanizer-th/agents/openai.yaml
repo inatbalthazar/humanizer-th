@@ -1,0 +1,4 @@
+interface:
+  display_name: "humanizer-th"
+  short_description: "เกลาภาษาไทยให้อ่านเหมือนคนไทยเขียนเอง"
+  default_prompt: "ใช้ $humanizer-th เกลาข้อความนี้ให้เป็นธรรมชาติ ข้อเท็จจริงต้องเหมือนเดิม"
